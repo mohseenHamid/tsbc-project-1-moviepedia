@@ -11,7 +11,7 @@ function searchMovieTitles(searchString){
     const resultsDiv = $('#searchResults');
     resultsDiv.empty();
     resultsArray.forEach(element => {
-      console.log(element.Title + " (" + element.Year + ")");
+
       const movieTitle = $('<div>').text(element.Title + " (" + element.Year + ")");
       resultsDiv.append(movieTitle)
     });
