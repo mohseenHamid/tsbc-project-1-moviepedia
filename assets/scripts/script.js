@@ -54,7 +54,6 @@ function celebNinjaClosure(celebName) {
 			contentType: "application/json"
 		}).then((result) => {
 			console.log(result);
-			let;
 		});
 	}
 	return celebNinjaInner;
