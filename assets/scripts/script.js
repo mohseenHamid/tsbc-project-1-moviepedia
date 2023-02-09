@@ -21,8 +21,8 @@ function searchMovieTitles(searchString){
 }
 
 // function to pull data from omdb API for data of selected movie
-function getMovieDetails(movieTitle){
-  const queryURL = "http://www.omdbapi.com/?apikey=" + OMDB_API_KEY + "&t=" + movieTitle;
+function getMovieDetails(movieTitle, movieYear){
+  const queryURL = "http://www.omdbapi.com/?apikey=" + OMDB_API_KEY + "&plot=full&t=" + movieTitle + "&y=" + movieYear;
   $.ajax({
     url: queryURL,
     method: "GET",
