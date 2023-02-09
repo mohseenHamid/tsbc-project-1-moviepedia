@@ -10,11 +10,13 @@ function searchMovieTitles(searchString){
     const resultsArray = response.Search;
     const resultsDiv = $('#searchResults');
     resultsDiv.empty();
-    resultsArray.forEach(element => {
+    if(resultsArray){
+      resultsArray.forEach(element => {
 
-      const movieTitle = $('<div>').text(element.Title + " (" + element.Year + ")");
-      resultsDiv.append(movieTitle)
-    });
+        const movieTitle = $('<div>').text(element.Title + " (" + element.Year + ")");
+        resultsDiv.append(movieTitle)
+      });
+    }
   })
 }
 
