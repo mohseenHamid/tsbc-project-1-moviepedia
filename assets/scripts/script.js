@@ -17,4 +17,4 @@ function celebNinjaClosure(celebName) {
 }
 let celebNinja = celebNinjaClosure();
 
-celebNinja();
+console.log(celebNinja());
