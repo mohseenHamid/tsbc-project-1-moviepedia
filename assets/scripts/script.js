@@ -49,6 +49,8 @@ function getMovieDetails(movieTitle, movieYear) {
 			console.log(rating.Source);
 			console.log(rating.Value);
 		})
+		let actors = response.Actors.split(',');
+		console.log(actors);
 	});
 }
 // function to get movieDetails from data attributes and load search-result with those details
