@@ -39,6 +39,16 @@ function getMovieDetails(movieTitle, movieYear) {
 		method: "GET"
 	}).then(function (response) {
 		console.log(response);
+		console.log(response.Poster);
+		console.log(response.Title);
+		console.log(response.Year);
+		console.log(response.Rated);
+		console.log(response.Runtime);
+		console.log(response.Plot);
+		response.Ratings.forEach(function(rating){
+			console.log(rating.Source);
+			console.log(rating.Value);
+		})
 	});
 }
 // function to get movieDetails from data attributes and load search-result with those details
@@ -69,7 +79,7 @@ $(function () {
 		const urlParams = new URLSearchParams(queryString);
 		const movieTitle = urlParams.get('title');
 		const movieYear = urlParams.get('year');
-
+		getMovieDetails(movieTitle, movieYear);
 	}
 });
 
