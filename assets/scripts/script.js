@@ -13,9 +13,12 @@ function searchMovieTitles(searchString) {
 		resultsDiv.empty();
 		if (resultsArray) {
 			resultsArray.forEach((element) => {
-				const movieTitle = $("<div>").text(
-					element.Title + " (" + element.Year + ")"
-				);
+				const movieTitle = $("<button>")
+				movieTitle.text(element.Title + " (" + element.Year + ")");
+				movieTitle.attr('type', 'button');
+				movieTitle.addClass('btn btn-secondary');
+				movieTitle.attr('data-movie-title', element.Title);
+				movieTitle.attr('data-movie-year', element.Year);
 				resultsDiv.append(movieTitle);
 			});
 		}
@@ -38,12 +41,21 @@ function getMovieDetails(movieTitle, movieYear) {
 		console.log(response);
 	});
 }
+// function to get movieDetails from data attributes and load search-result with those details
+//  as parameters
+function displayMovieData(event){
+	const movieTitle = event.target.getAttribute('data-movie-title');
+	const movieYear = event.target.getAttribute('data-movie-year');
+	window.location.href = "./search-result.html?title=" + movieTitle + "&year=" + movieYear;
+	// console.log(movieTitle, movieYear);
+}
+
 
 // function to add keyup handler once document is ready
 $(function () {
-	$("#movie-input").on("keyup", function (event) {
+	$('#movie-input').on('keyup', function (event) {
 		// when key is released this function runs grabbing the text that is in the input box
-		const textString = $("#movie-input").val();
+		const textString = $('#movie-input').val();
 		// first it checks if more than 2 characters have been typed as 2 or less gives a too many results
 		// error from the API
 		if (textString.length > 2) {
@@ -51,6 +63,7 @@ $(function () {
 			searchMovieTitles(textString);
 		}
 	});
+	$('#search-results').on('click', displayMovieData);
 });
 
 // FUNCTION FOR CELEBNINJA API
