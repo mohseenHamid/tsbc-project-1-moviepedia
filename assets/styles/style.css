@@ -199,7 +199,10 @@ img {
 }
 
 .info {
-	
+	font-size: 10px;
+}
+.birthday, .height, .net-worth {
+	text-align: center;
 }
 
 /* ---media queries--- */
