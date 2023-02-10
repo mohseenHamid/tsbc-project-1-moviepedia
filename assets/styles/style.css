@@ -186,6 +186,13 @@ footer {
 #movie-input {
 }
 
+.box {
+	width: 47%;
+	height: 100%;
+	object-fit: cover;
+	border: 3px solid black;
+}
+
 /* ---media queries--- */
 /* nav-bar toggle alignment */
 @media (max-width: 432px) {
