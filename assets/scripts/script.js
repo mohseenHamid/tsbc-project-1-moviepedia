@@ -71,7 +71,6 @@ function celebNinjaClosure(celebName) {
 }
 let celebNinja = celebNinjaClosure();
 
-celebNinja();
 function movieSearch(movieName) {
 	 
   console.log(movieName);
