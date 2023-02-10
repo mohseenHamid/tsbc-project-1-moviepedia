@@ -77,54 +77,56 @@ function movieSearch(movieName) {
     
        $.ajax({
          method: "GET",
-         url: "https://en.wikipedia.org/api/rest_v1/page/summary/Avatar?redirect=true" + movieName,
+         url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + movieName,
   
         contentType: "application/json"
        }).then(function (result) {
        console.log(result);
        });
      }
-  $(document).ready(function() {
-    var movieName = "Avatar"; 
-     movieSearch(movieName) 
-    });
+
+		//  not sure we need this document.ready function apart from for testing
+  // $(document).ready(function() {
+  //   var movieName = "Avatar"; 
+  //    movieSearch(movieName) 
+  //   });
     
-    
+   // dont think we need movieSearch2 and movieSearch3 
   
-    function movieSearch2(movieName2) {
+    // function movieSearch2(movieName2) {
      
-    console.log(movieName2);
+    // console.log(movieName2);
       
-         $.ajax({
-           method: "GET",
-           url: "https://en.wikipedia.org/api/rest_v1/page/summary/%20Pauvre_Pierrot?redirect=true" + movieName2,
+    //      $.ajax({
+    //        method: "GET",
+    //        url: "https://en.wikipedia.org/api/rest_v1/page/summary/%20Pauvre_Pierrot?redirect=true" + movieName2,
     
-          contentType: "application/json"
-         }).then(function (result) {
-         console.log(result);
-         });
-       }
-    $(document).ready(function() {
-      var movieName2 = "Pauvre Perrot"; 
-       movieSearch2(movieName2) 
-      });
+    //       contentType: "application/json"
+    //      }).then(function (result) {
+    //      console.log(result);
+    //      });
+    //    }
+    // $(document).ready(function() {
+    //   var movieName2 = "Pauvre Perrot"; 
+    //    movieSearch2(movieName2) 
+    //   });
   
   
-      function movieSearch3(movieName3) {
+    //   function movieSearch3(movieName3) {
      
-      console.log(movieName3);
+    //   console.log(movieName3);
         
-           $.ajax({
-             method: "GET",
-             url: "https://en.wikipedia.org/api/rest_v1/page/summary/Tintin?redirect=true" + movieName3,
+    //        $.ajax({
+    //          method: "GET",
+    //          url: "https://en.wikipedia.org/api/rest_v1/page/summary/Tintin?redirect=true" + movieName3,
       
-            contentType: "application/json"
-           }).then(function (result) {
-           console.log(result);
-           });
-         }
-      $(document).ready(function() {
-        var movieName3 = "Tintin"; 
-         movieSearch3(movieName3) 
-        });
+    //         contentType: "application/json"
+    //        }).then(function (result) {
+    //        console.log(result);
+    //        });
+    //      }
+    //   $(document).ready(function() {
+    //     var movieName3 = "Tintin"; 
+    //      movieSearch3(movieName3) 
+    //     });
   
