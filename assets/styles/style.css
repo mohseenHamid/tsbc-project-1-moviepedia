@@ -1,0 +1,210 @@
+/* ---global styles--- */
+:root {
+	--dark: #09062e;
+	--light: wheat;
+	--curve: 0.5rem;
+	--thick: 0.3rem;
+	--dark-text: #16181b;
+	--shadow: 0 0 0.1em var(--dark-text), 0 0 0.1em var(--dark-text),
+		0 0 0.1em var(--dark-text), 0 0 0.1em var(--dark-text),
+		0 0 0.1em var(--dark-text), 0 0 0.1em var(--dark-text),
+		0 0 0.1em var(--dark-text), 0 0 0.1em var(--dark-text),
+		0 0 0.1em var(--dark-text), 0 0 0.1em var(--dark-text);
+}
+
+* {
+	/* box-sizing: border-box; => padding + border included in width & height */
+	box-sizing: border-box;
+	font-family: "comfortaa";
+}
+
+html {
+	/* Converts root from 16px to 10px */
+	font-size: 62.5%;
+}
+
+body {
+	/* 1rem = 10px => sets body default to 16px for legibility */
+	font-size: 1.6rem;
+	color: var(--light) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	font-size: 5rem;
+}
+
+h2 {
+	font-size: 4rem;
+}
+
+h3 {
+	font-size: 3rem;
+}
+
+h4 {
+	font-size: 2rem;
+}
+
+p {
+	color: var(--dark);
+	font-size: 1.5em;
+}
+
+/* ---nav styles--- */
+.customNav,
+footer {
+	min-width: 100%;
+	min-height: 10vh;
+	background: url("../images/transparency.png");
+	background-size: cover;
+	padding: 1rem 3rem;
+}
+
+.nav-brand-name,
+.nav-link h3 {
+	color: var(--light) !important;
+	text-shadow: var(--shadow);
+}
+
+.navbar-nav {
+	margin-left: auto;
+	margin-right: 0;
+}
+
+.navbar-brand {
+	display: flex;
+	padding-right: 1.5em;
+	min-width: 6.5rem;
+	align-items: center;
+	gap: 5px;
+}
+
+#logo {
+	width: 75px;
+	border: solid 3px var(--light);
+	border-radius: 15px;
+	/* background-color: antiquewhite; */
+}
+
+.nav-brand-name {
+	/* font-family: "comfortaa"; */
+	font-family: "pacifico";
+}
+
+.nav-item {
+	margin: 0.1em 0.3em;
+	padding: 0 0.2em 0 0.5rem;
+	border-right: var(--thick) solid var(--light);
+	border-radius: 15px 0 0 15px;
+}
+.nav-item:hover {
+	background: linear-gradient(to left, wheat 50%, transparent 50%) right;
+	background-size: 200% 100%;
+	color: var(--dark);
+	transition: all 0.5s;
+}
+
+.navbar-toggler-icon {
+	width: 3em;
+	height: 3em;
+}
+
+/* ---s1: jumbotron */
+.jumbotron {
+	min-height: 90vh;
+	margin-bottom: 0;
+	padding: calc(10vh + 4rem) 4rem 4rem 4rem;
+
+	background: linear-gradient(
+			360deg,
+			black 0.1%,
+			rgba(26, 26, 26, 0.886317) 10.58%,
+			rgba(26, 26, 26, 0.886317) 10.58%,
+			rgba(26, 26, 26, 0.886317) 10.58%,
+			rgba(26, 26, 26, 0.65) 25.45%,
+			rgba(26, 26, 26, 0.3) 100%
+		),
+		url(../images/hero.png);
+	background-size: cover;
+	background-position: center;
+
+	display: flex;
+	align-items: center;
+	text-align: center;
+}
+
+#profile-pic {
+	box-shadow: 0 0 10px var(--light);
+	border-radius: 15px;
+	max-width: 100%;
+	max-height: 85vh;
+}
+
+.hero-content {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 1.5em;
+	padding: 0;
+}
+
+.hero-text {
+	font-family: "homenaje";
+	text-shadow: var(--shadow);
+}
+
+.hero-btn {
+	margin: 0.3em 0.3em;
+	font-size: 1.5em;
+	text-shadow: var(--shadow);
+	background: var(--dark);
+	border: 1px solid var(--light);
+	border-radius: 15px;
+}
+.hero-btn:hover,
+.hero-btn:focus {
+	box-shadow: 0 0 0.5em var(--light);
+	background: url(../images/transparency.png);
+	border: 1px solid var(--light);
+	color: var(--light);
+}
+
+#movie-input {
+}
+
+/* ---media queries--- */
+/* nav-bar toggle alignment */
+@media (max-width: 432px) {
+	.customNav {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+		padding: 1rem;
+	}
+
+	.navbar-brand {
+		padding-right: 0;
+		margin-right: 0;
+	}
+
+	.navbar-collapse {
+		width: 25ch;
+	}
+
+	.jumbotron {
+		padding: calc(20vh + 4rem) 4rem 4rem 4rem;
+	}
+}
