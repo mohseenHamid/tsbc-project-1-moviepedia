@@ -13,9 +13,12 @@ function searchMovieTitles(searchString) {
 		resultsDiv.empty();
 		if (resultsArray) {
 			resultsArray.forEach((element) => {
-				const movieTitle = $("<div>").text(
-					element.Title + " (" + element.Year + ")"
-				);
+				const movieTitle = $("<button>");
+				movieTitle.text(element.Title + " (" + element.Year + ")");
+				movieTitle.attr("type", "button");
+				movieTitle.addClass("btn btn-secondary");
+				movieTitle.attr("data-movie-title", element.Title);
+				movieTitle.attr("data-movie-year", element.Year);
 				resultsDiv.append(movieTitle);
 			});
 		}
@@ -38,6 +41,15 @@ function getMovieDetails(movieTitle, movieYear) {
 		console.log(response);
 	});
 }
+// function to get movieDetails from data attributes and load search-result with those details
+//  as parameters
+function displayMovieData(event) {
+	const movieTitle = event.target.getAttribute("data-movie-title");
+	const movieYear = event.target.getAttribute("data-movie-year");
+	window.location.href =
+		"./search-result.html?title=" + movieTitle + "&year=" + movieYear;
+	// console.log(movieTitle, movieYear);
+}
 
 // function to add keyup handler once document is ready
 $(function () {
@@ -51,6 +63,7 @@ $(function () {
 			searchMovieTitles(textString);
 		}
 	});
+	$("#search-results").on("click", displayMovieData);
 });
 
 // FUNCTION FOR CELEBNINJA API
@@ -70,3 +83,60 @@ function celebNinjaClosure(celebName) {
 	return celebNinjaInner;
 }
 let celebNinja = celebNinjaClosure();
+
+function movieSearch(movieName) {
+	console.log(movieName);
+
+	$.ajax({
+		method: "GET",
+		url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + movieName,
+
+		contentType: "application/json"
+	}).then(function (result) {
+		console.log(result);
+	});
+}
+
+//  not sure we need this document.ready function apart from for testing
+// $(document).ready(function() {
+//   var movieName = "Avatar";
+//    movieSearch(movieName)
+//   });
+
+// dont think we need movieSearch2 and movieSearch3
+
+// function movieSearch2(movieName2) {
+
+// console.log(movieName2);
+
+//      $.ajax({
+//        method: "GET",
+//        url: "https://en.wikipedia.org/api/rest_v1/page/summary/%20Pauvre_Pierrot?redirect=true" + movieName2,
+
+//       contentType: "application/json"
+//      }).then(function (result) {
+//      console.log(result);
+//      });
+//    }
+// $(document).ready(function() {
+//   var movieName2 = "Pauvre Perrot";
+//    movieSearch2(movieName2)
+//   });
+
+//   function movieSearch3(movieName3) {
+
+//   console.log(movieName3);
+
+//        $.ajax({
+//          method: "GET",
+//          url: "https://en.wikipedia.org/api/rest_v1/page/summary/Tintin?redirect=true" + movieName3,
+
+//         contentType: "application/json"
+//        }).then(function (result) {
+//        console.log(result);
+//        });
+//      }
+//   $(document).ready(function() {
+//     var movieName3 = "Tintin";
+//      movieSearch3(movieName3)
+//     });
