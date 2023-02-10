@@ -63,3 +63,60 @@ function celebNinjaClosure(celebName) {
 let celebNinja = celebNinjaClosure();
 
 celebNinja();
+function movieSearch(movieName) {
+	 
+  console.log(movieName);
+    
+       $.ajax({
+         method: "GET",
+         url: "https://en.wikipedia.org/api/rest_v1/page/summary/Avatar?redirect=true" + movieName,
+  
+        contentType: "application/json"
+       }).then(function (result) {
+       console.log(result);
+       });
+     }
+  $(document).ready(function() {
+    var movieName = "Avatar"; 
+     movieSearch(movieName) 
+    });
+    
+    
+  
+    function movieSearch2(movieName2) {
+     
+    console.log(movieName2);
+      
+         $.ajax({
+           method: "GET",
+           url: "https://en.wikipedia.org/api/rest_v1/page/summary/%20Pauvre_Pierrot?redirect=true" + movieName2,
+    
+          contentType: "application/json"
+         }).then(function (result) {
+         console.log(result);
+         });
+       }
+    $(document).ready(function() {
+      var movieName2 = "Pauvre Perrot"; 
+       movieSearch2(movieName2) 
+      });
+  
+  
+      function movieSearch3(movieName3) {
+     
+      console.log(movieName3);
+        
+           $.ajax({
+             method: "GET",
+             url: "https://en.wikipedia.org/api/rest_v1/page/summary/Tintin?redirect=true" + movieName3,
+      
+            contentType: "application/json"
+           }).then(function (result) {
+           console.log(result);
+           });
+         }
+      $(document).ready(function() {
+        var movieName3 = "Tintin"; 
+         movieSearch3(movieName3) 
+        });
+  
