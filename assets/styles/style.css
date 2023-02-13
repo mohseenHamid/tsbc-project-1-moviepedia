@@ -199,6 +199,9 @@ footer {
 	padding: 5px;
 }
 
+.modal-footer {
+	justify-content: space-between;
+}
 
 /* ---media queries--- */
 /* nav-bar toggle alignment */
