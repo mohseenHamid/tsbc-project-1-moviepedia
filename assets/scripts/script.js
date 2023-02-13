@@ -103,6 +103,8 @@ function celebNinjaClosure(celebName) {
 }
 let celebNinja = celebNinjaClosure();
 
+
+// function to find movie details from wikipedia
 function movieSearch(movieName) {
 	 
   console.log(movieName);
