@@ -96,7 +96,10 @@ function celebNinjaClosure(celebName) {
 			headers: { "X-Api-Key": "+qZ8SEACFRjRVK2XZ9RpgQ==urpaH1jT1cOiYaJ6" },
 			contentType: "application/json"
 		}).then((result) => {
-			console.log(result);
+			console.log(result[0].name);
+			console.log(result[0].birthday);
+			console.log(result[0].net_worth);
+			console.log(result[0].height);
 		});
 	}
 	return celebNinjaInner;
@@ -118,8 +121,7 @@ function actorSearch(actorName) {
 	});
 }
 
-let test = actorSearch("Eddie_Murphy");
-console.log(test);
+celebNinja();
 
 		//  not sure we need this document.ready function apart from for testing
   // $(document).ready(function() {
