@@ -39,11 +39,23 @@ function getMovieDetails(movieTitle, movieYear) {
 		method: "GET"
 	}).then(function (response) {
 		console.log(response);
+		console.log(response.Poster);
+		console.log(response.Title);
+		console.log(response.Year);
+		console.log(response.Rated);
+		console.log(response.Runtime);
+		console.log(response.Plot);
+		response.Ratings.forEach(function(rating){
+			console.log(rating.Source);
+			console.log(rating.Value);
+		})
+		let actors = response.Actors.split(',');
+		console.log(actors);
 	});
 }
 // function to get movieDetails from data attributes and load search-result with those details
 //  as parameters
-function displayMovieData(event){
+function goToSearchResult(event){
 	const movieTitle = event.target.getAttribute('data-movie-title');
 	const movieYear = event.target.getAttribute('data-movie-year');
 	window.location.href = "./search-result.html?title=" + movieTitle + "&year=" + movieYear;
@@ -63,7 +75,14 @@ $(function () {
 			searchMovieTitles(textString);
 		}
 	});
-	$('#search-results').on('click', displayMovieData);
+	$('#search-results').on('click', goToSearchResult);
+	if(window.location.search!==''){
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		const movieTitle = urlParams.get('title');
+		const movieYear = urlParams.get('year');
+		getMovieDetails(movieTitle, movieYear);
+	}
 });
 
 // FUNCTION FOR CELEBNINJA API
@@ -77,26 +96,32 @@ function celebNinjaClosure(celebName) {
 			headers: { "X-Api-Key": "+qZ8SEACFRjRVK2XZ9RpgQ==urpaH1jT1cOiYaJ6" },
 			contentType: "application/json"
 		}).then((result) => {
-			console.log(result);
+			console.log(result[0].name);
+			console.log(result[0].birthday);
+			console.log(result[0].net_worth);
+			console.log(result[0].height);
 		});
 	}
 	return celebNinjaInner;
 }
 let celebNinja = celebNinjaClosure();
 
-function movieSearch(movieName) {
-	 
-  console.log(movieName);
+
+// function to find actor details from wikipedia
+function actorSearch(actorName) {
     
-       $.ajax({
-         method: "GET",
-         url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + movieName,
-  
-        contentType: "application/json"
-       }).then(function (result) {
-       console.log(result);
-       });
-     }
+	$.ajax({
+		method: "GET",
+		url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + actorName,
+		contentType: "application/json"
+	}).then(function (result) {
+		console.log(result.title);
+		console.log(result.thumbnail.source);
+		console.log(result.extract);
+	});
+}
+
+celebNinja();
 
 		//  not sure we need this document.ready function apart from for testing
   // $(document).ready(function() {
