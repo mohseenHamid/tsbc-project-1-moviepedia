@@ -39,11 +39,23 @@ function getMovieDetails(movieTitle, movieYear) {
 		method: "GET"
 	}).then(function (response) {
 		console.log(response);
+		console.log(response.Poster);
+		console.log(response.Title);
+		console.log(response.Year);
+		console.log(response.Rated);
+		console.log(response.Runtime);
+		console.log(response.Plot);
+		response.Ratings.forEach(function (rating) {
+			console.log(rating.Source);
+			console.log(rating.Value);
+		});
+		let actors = response.Actors.split(",");
+		console.log(actors);
 	});
 }
 // function to get movieDetails from data attributes and load search-result with those details
 //  as parameters
-function displayMovieData(event) {
+function goToSearchResult(event) {
 	const movieTitle = event.target.getAttribute("data-movie-title");
 	const movieYear = event.target.getAttribute("data-movie-year");
 	window.location.href =
@@ -63,7 +75,14 @@ $(function () {
 			searchMovieTitles(textString);
 		}
 	});
-	$("#search-results").on("click", displayMovieData);
+	$("#search-results").on("click", goToSearchResult);
+	if (window.location.search !== "") {
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		const movieTitle = urlParams.get("title");
+		const movieYear = urlParams.get("year");
+		getMovieDetails(movieTitle, movieYear);
+	}
 });
 
 // FUNCTION FOR CELEBNINJA API
