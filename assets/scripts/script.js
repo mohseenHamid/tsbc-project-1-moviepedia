@@ -104,20 +104,22 @@ function celebNinjaClosure(celebName) {
 let celebNinja = celebNinjaClosure();
 
 
-// function to find movie details from wikipedia
-function movieSearch(movieName) {
-	 
-  console.log(movieName);
+// function to find actor details from wikipedia
+function actorSearch(actorName) {
     
-       $.ajax({
-         method: "GET",
-         url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + movieName,
-  
-        contentType: "application/json"
-       }).then(function (result) {
-       console.log(result);
-       });
-     }
+	$.ajax({
+		method: "GET",
+		url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + actorName,
+		contentType: "application/json"
+	}).then(function (result) {
+		console.log(result.title);
+		console.log(result.thumbnail.source);
+		console.log(result.extract);
+	});
+}
+
+let test = actorSearch("Eddie_Murphy");
+console.log(test);
 
 		//  not sure we need this document.ready function apart from for testing
   // $(document).ready(function() {
