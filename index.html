@@ -109,12 +109,13 @@
 						></div> -->
 
 						<div class="dropdown search-div">
+							<!-- Removed data-toggle="dropdown" attribute -->
+							<!-- Bug: Pressing the x doesn't clear the input field value i.e. close the dropdown -->
 							<input
-								class="dropdown-toggle movie-input"
-								type="search"
-								id="dropdownMenuButton"
+								type="text"
 								placeholder="Movie Title"
-								data-toggle="dropdown"
+								id="dropdownMenuButton"
+								class="dropdown-toggle movie-input"
 								aria-haspopup="true"
 								aria-expanded="false"
 							/>

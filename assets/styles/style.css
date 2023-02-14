@@ -193,6 +193,11 @@ footer {
 	color: var(--light);
 } */
 
+.movie-input::-webkit-search-cancel-button {
+	position: relative;
+	right: 20px;
+}
+
 /* modal pop up */
 .img-box {
 	padding-top: 10px;
@@ -202,6 +207,7 @@ footer {
 .carousel {
 	background: url("../images/transparency.png");
 }
+
 .birthday,
 .height,
 .net-worth {

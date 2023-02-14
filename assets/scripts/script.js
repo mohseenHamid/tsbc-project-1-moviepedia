@@ -93,17 +93,38 @@ $(function () {
 	$(".movie-input").on("keyup", function (event) {
 		// when key is released this function runs grabbing the text that is in the input box
 		const textString = $(".movie-input").val();
-		// first it checks if more than 2 characters have been typed as 2 or less gives a too many results
+		// first it checks if more than 2 characters have been typed as 2 or less gives too many results
 		// error from the API
+
+		// Sets dropdown display default as "none" to solve empty dropdown display bug while API is being called
+		$("#search-menu").css("display", "none");
+
 		if (textString.length > 2) {
 			// if more than two characters then it calls the searchMovieTitles function
 			searchMovieTitles(textString);
-			$("#search-menu").css("display", "block");
-		} else if (textString.length < 3) {
+
+			// Solve bug: code runs before API call is completed
+			setTimeout(() => {
+				if ($("#search-menu").children().length == 0) {
+					$("#search-menu").css("display", "none");
+				} else {
+					console.log("DROPDOWN TRIGGERED");
+					console.log(textString);
+					$("#search-menu").css("display", "block");
+				}
+			}, 500);
+		} else {
+			$("#search-menu").empty();
+		}
+
+		// Emptying field with Escape key
+		if (event.keyCode == 27) {
+			$(this).val("");
 			$("#search-menu").empty();
 			$("#search-menu").css("display", "none");
 		}
 	});
+
 	$("#search-menu").on("click", goToSearchResult);
 	if (window.location.search !== "") {
 		const queryString = window.location.search;
