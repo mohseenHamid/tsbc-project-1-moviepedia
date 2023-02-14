@@ -78,9 +78,11 @@ function actorSearch(actor) {
 		url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + actor,
 		contentType: "application/json"
 	}).then(function (result) {
-		let actorImg = result.originalimage[1];
 
-		$(".img-box").attr("src", actorImg);
+
+		let actorImg = result.thumbnail.source;
+
+		$(".box").attr("src", actorImg);
 		$(".name").text(result.title);
 		$(".more-info").text(result.extract);
 		console.log(result);
