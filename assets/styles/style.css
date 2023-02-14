@@ -193,13 +193,25 @@ footer {
 	color: var(--light);
 } */
 
+/* modal pop up */
+.img-box {
+	padding-top: 10px;
+}
+
 /* Carousel */
 .carousel {
 	background: url("../images/transparency.png");
 }
-.carousel-item img {
-	max-width: 100%;
-	max-height: 50vh;
+.birthday,
+.height,
+.net-worth {
+	text-align: center;
+	padding: 5px;
+}
+
+.name,
+.more-info {
+	padding: 5px;
 }
 
 /* ---media queries--- */

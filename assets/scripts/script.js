@@ -125,25 +125,30 @@ function celebNinjaClosure(celebName) {
 			headers: { "X-Api-Key": "+qZ8SEACFRjRVK2XZ9RpgQ==urpaH1jT1cOiYaJ6" },
 			contentType: "application/json"
 		}).then((result) => {
-			console.log(result);
+			console.log(result[0].name);
+			console.log(result[0].birthday);
+			console.log(result[0].net_worth);
+			console.log(result[0].height);
 		});
 	}
 	return celebNinjaInner;
 }
 let celebNinja = celebNinjaClosure();
 
-function movieSearch(movieName) {
-	console.log(movieName);
-
+// function to find actor details from wikipedia
+function actorSearch(actorName) {
 	$.ajax({
 		method: "GET",
-		url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + movieName,
-
+		url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + actorName,
 		contentType: "application/json"
 	}).then(function (result) {
-		console.log(result);
+		console.log(result.title);
+		console.log(result.thumbnail.source);
+		console.log(result.extract);
 	});
 }
+
+celebNinja();
 
 //  not sure we need this document.ready function apart from for testing
 // $(document).ready(function() {
