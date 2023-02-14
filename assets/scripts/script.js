@@ -12,8 +12,8 @@ function celebNinjaClosure(celebName) {
 			contentType: "application/json"
 		}).then((result) => {
 
-			let nameActor = result[0].name;
-			$(".name").text(`${nameActor}`);
+			// let nameActor = result[0].name;
+			// $(".name").text(`${nameActor}`);
 
 			//$(".name").text(result[0].name);
 			console.log(result[0].name);
@@ -79,6 +79,8 @@ function actorSearch(actor) {
 		contentType: "application/json"
 	}).then(function (result) {
 		$(".name").text(result.title);
+		$(".more-info").text(result.description);
+		console.log(result);
 		// const actorProfile = {
 		// actorName: result.title,
 	 	// thumbnail: result.thumbnail.source,
