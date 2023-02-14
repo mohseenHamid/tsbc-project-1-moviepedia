@@ -11,10 +11,18 @@ function celebNinjaClosure(celebName) {
 			headers: { "X-Api-Key": "+qZ8SEACFRjRVK2XZ9RpgQ==urpaH1jT1cOiYaJ6" },
 			contentType: "application/json"
 		}).then((result) => {
-			// console.log(result[0].name);
-			// console.log(result[0].birthday);
-			// console.log(result[0].net_worth);
-			// console.log(result[0].height);
+
+			let nameActor = result[0].name;
+			$(".name").text(`${nameActor}`);
+
+			//$(".name").text(result[0].name);
+			console.log(result.name);
+			$(".birthday").text("Birthday:" + result[0].birthday);
+			console.log(result[0].birthday);
+			$(".height").text("Height:" + result[0].height);
+			 console.log(result[0].net_worth);
+			$(".net-worth").text("Net Worth:" + result[0].net_worth)
+			console.log(result[0].height);
 		});
 	}
 	return celebNinjaInner;
