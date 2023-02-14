@@ -2,7 +2,7 @@ const omdbKey = "e2bf0e18";
 
 // FUNCTION FOR CELEBNINJA API
 function celebNinjaClosure(celebName) {
-	celebName = "michael jackson"; // PLACEHOLDER
+	// let celebName = inputName; // PLACEHOLDER
 
 	function celebNinjaInner() {
 		$.ajax({
@@ -11,10 +11,10 @@ function celebNinjaClosure(celebName) {
 			headers: { "X-Api-Key": "+qZ8SEACFRjRVK2XZ9RpgQ==urpaH1jT1cOiYaJ6" },
 			contentType: "application/json"
 		}).then((result) => {
-			// console.log(result[0].name);
-			// console.log(result[0].birthday);
-			// console.log(result[0].net_worth);
-			// console.log(result[0].height);
+			console.log(result[0].name);
+			console.log(result[0].birthday);
+			console.log(result[0].net_worth);
+			console.log(result[0].height);
 		});
 	}
 	return celebNinjaInner;
@@ -62,21 +62,80 @@ function searchMovieTitles(searchString) {
 }
 
 // function to find actor details from wikipedia
-function actorSearch(actor) {
+// function actorSearch(actor) {
+// 	return Q(
+// 		$.ajax({
+// 			method: "GET",
+// 			url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + actor,
+// 			contentType: "application/json"
+// 		})
+// 	);
+// }
+// console.log(actorSearch("tom_hanks"));
+
+// function actorSearch(actor, cardNum) {
+// 	$.ajax({
+// 		method: "GET",
+// 		url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + actor,
+// 		contentType: "application/json"
+// 	}).then(function (result) {
+// 		const actorProfile = {
+// 			actorName: result.title,
+// 			thumbnail: result.thumbnail.source,
+// 			bio: result.extract
+// 		};
+
+// 		// Extracting card label
+// 		let card = `.card-${cardNum}`;
+// 		let cardTitle = `.card-title${cardNum}`;
+// 		let cardImg = `.card-img-${cardNum}`;
+
+// 		// assign card properties
+// 		$(cardTitle).text(`${actorProfile.actorName}`);
+// 	});
+// }
+
+// let actorProfile = {};
+
+function actorSearch(actor, cardNum) {
 	$.ajax({
 		method: "GET",
 		url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + actor,
 		contentType: "application/json"
 	}).then(function (result) {
-		// const actorProfile = {
-		// 	actorName: result.title,
-		// 	thumbnail: result.thumbnail.source,
-		// 	bio: result.extract
-		// };
+		actorResult = {
+			actorName: result.title,
+			thumbnail: result.thumbnail.source,
+			bio: result.extract
+		};
+		// Object.assign(actorProfile, actorResult);
+
+		// Extracting card label
+		let card = `.card-${cardNum}`;
+		let cardTitle = `.card-title-${cardNum}`;
+		let cardImg = `.card-img-${cardNum}`;
+
+		// assign card properties
+		$(cardImg).attr("src", actorResult.thumbnail);
+		$(cardTitle).text(actorResult.actorName);
+		// $(cardImg).attr("src", actorProfile.thumbnail);
+		// $(cardTitle).text(actorProfile.actorName);
+
+		// click event handler for movie modal cards
+		function actorModalOpen(event) {
+			event.preventDefault();
+			console.log("MODAL OPEN");
+			$("#actorModal").modal("show");
+			$("#movieSearchModal").modal("hide");
+		}
+		$(card).on("click", actorModalOpen);
+
+		// deals with closing actor modal
+		$("#actorModal").on("hide.bs.modal", function () {
+			$("#movieSearchModal").modal("show");
+		});
 	});
 }
-
-console.log(actorSearch("tom_hanks"));
 
 // function to pull data from omdb API for data of selected movie
 function getMovieDetails(movieTitle, movieYear) {
@@ -117,14 +176,13 @@ function getMovieDetails(movieTitle, movieYear) {
 				`${movieRatings[i - 1].Source}: ${movieRatings[i - 1].Value}`
 			);
 		}
-
 		// Set movie modal row 2 properties/values using Wiki API
-		actors.forEach((actor) => {
-			console.log(actorSearch(actor));
-		});
+		for (let i = 1; i < 4; i++) {
+			actorSearch(actors[i - 1], i);
+		}
 	});
 	// Display modal
-	$("#exampleModalCenter").modal("show");
+	$("#movieSearchModal").modal("show");
 }
 // function to get movieDetails from data attributes and load search-result with those details
 //  as parameters

@@ -133,16 +133,19 @@
 		<!-- Movie Search Modal -->
 		<div
 			class="modal fade bd-example-modal-lg"
-			id="exampleModalCenter"
+			id="movieSearchModal"
 			tabindex="-1"
 			role="dialog"
 			aria-labelledby="myLargeModalLabel"
 			aria-hidden="true"
 		>
-			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div
+				class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable"
+				role="document"
+			>
 				<div class="modal-content">
 					<div class="modal-header">
-						<h3 class="modal-title" id="exampleModalCenterTitle">
+						<h3 class="modal-title" id="movieSearchModal">
 							Here's your movie!
 						</h3>
 						<button
@@ -203,38 +206,38 @@
 
 						<div class="row r2">
 							<div class="col-sm img-col">
-								<div class="card" style="width: 18rem">
+								<a class="card card-1" style="width: 18rem" href="">
 									<img
-										class="card-img-top"
-										src="./assets/images/bootstrap-icon.svg"
+										class="card-img-top card-img-1"
+										src=""
 										alt="Card image cap"
 									/>
 									<div class="card-body">
-										<p class="card-text">CREATOR NAME</p>
+										<p class="card-text card-title-1"></p>
 									</div>
-								</div>
+								</a>
 
-								<div class="card" style="width: 18rem">
+								<a class="card card-2" style="width: 18rem" href="">
 									<img
-										class="card-img-top"
-										src="./assets/images/bootstrap-icon.svg"
+										class="card-img-top card-img-2"
+										src=""
 										alt="Card image cap"
 									/>
 									<div class="card-body">
-										<p class="card-text">CREATOR NAME</p>
+										<p class="card-text card-title-2"></p>
 									</div>
-								</div>
+								</a>
 
-								<div class="card" style="width: 18rem">
+								<a class="card card-3" style="width: 18rem" href="">
 									<img
-										class="card-img-top"
-										src="./assets/images/bootstrap-icon.svg"
+										class="card-img-top card-img-3"
+										src=""
 										alt="Card image cap"
 									/>
 									<div class="card-body">
-										<p class="card-text">CREATOR NAME</p>
+										<p class="card-text card-title-3"></p>
 									</div>
-								</div>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -307,16 +310,18 @@
 			</div>
 		</div> -->
 
-		<!-- Creator Modal -->
-		<!-- <div
+		<!-- Actor Modal -->
+		<div
 			class="modal fade"
-			id="exampleModalCenter"
+			id="actorModal"
 			tabindex="-1"
 			role="dialog"
 			aria-labelledby="exampleModalCenterTitle"
-			aria-hidden="true"
 		>
-			<div class="modal-dialog modal-lg" role="document">
+			<div
+				class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable"
+				role="document"
+			>
 				<div class="modal-content">
 					<div class="modal-body">
 						<div class="container">
@@ -358,7 +363,7 @@
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
 
 		<!-- Favourites Section -->
 		<main id="favourites">

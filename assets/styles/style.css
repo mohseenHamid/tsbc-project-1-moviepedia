@@ -352,7 +352,7 @@ footer {
 .img-col {
 	display: flex;
 	margin: 0;
-	padding: 0;
+	padding: 0.3rem;
 	justify-content: space-between;
 }
 
@@ -377,4 +377,13 @@ footer {
 .net-worth {
 	text-align: center;
 	padding: 5px;
+}
+
+.card {
+	background: url("../images/transparency.png");
+	text-align: center;
+}
+.card:hover {
+	text-decoration: none;
+	box-shadow: 0 0 0.5em var(--light);
 }
