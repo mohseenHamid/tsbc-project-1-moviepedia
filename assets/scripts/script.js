@@ -16,7 +16,7 @@ function celebNinjaClosure(celebName) {
 			$(".name").text(`${nameActor}`);
 
 			//$(".name").text(result[0].name);
-			console.log(result.name);
+			console.log(result[0].name);
 			$(".birthday").text("Birthday:" + result[0].birthday);
 			console.log(result[0].birthday);
 			$(".height").text("Height:" + result[0].height);
@@ -28,6 +28,8 @@ function celebNinjaClosure(celebName) {
 	return celebNinjaInner;
 }
 let celebNinja = celebNinjaClosure();
+
+celebNinja();
 
 // function to pull data from omdb API for searching
 function searchMovieTitles(searchString) {
