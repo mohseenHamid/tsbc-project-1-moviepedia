@@ -41,15 +41,15 @@ p {
 }
 
 h1 {
-	font-size: 5rem;
+	font-size: 8rem;
 }
 
 h2 {
-	font-size: 4rem;
+	font-size: 6rem;
 }
 
 h3 {
-	font-size: 3rem;
+	font-size: 2.5rem;
 }
 
 h4 {
@@ -62,11 +62,18 @@ p {
 }
 
 /* ---nav styles--- */
-.customNav,
-footer {
+.customNav {
 	min-width: 100%;
 	min-height: 10vh;
 	background: url("../images/transparency.png");
+	background-size: cover;
+	padding: 1rem 3rem;
+}
+
+footer {
+	min-width: 100%;
+	min-height: 10vh;
+	background: black;
 	background-size: cover;
 	padding: 1rem 3rem;
 }
@@ -94,7 +101,8 @@ footer {
 	width: 75px;
 	border: solid 3px var(--light);
 	border-radius: 15px;
-	/* background-color: antiquewhite; */
+	background-color: wheat;
+	opacity: 70%;
 }
 
 .nav-brand-name {
@@ -106,13 +114,10 @@ footer {
 	margin: 0.1em 0.3em;
 	padding: 0 0.2em 0 0.5rem;
 	border-right: var(--thick) solid var(--light);
-	border-radius: 15px 0 0 15px;
 }
-.nav-item:hover {
-	background: linear-gradient(to left, wheat 50%, transparent 50%) right;
-	background-size: 200% 100%;
-	color: var(--dark);
-	transition: all 0.5s;
+.nav-link:hover {
+	transition: all 0.25s;
+	opacity: 0.4;
 }
 
 .navbar-toggler-icon {
@@ -120,9 +125,20 @@ footer {
 	height: 3em;
 }
 
+.favourites-dropdown:hover .dropdown-menu {
+	display: flex;
+	flex-direction: column;
+	transition: all 0.5s;
+}
+.dropdown-toggle {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
 /* ---s1: jumbotron */
 .jumbotron {
-	min-height: 90vh;
+	min-height: 100vh;
 	margin-bottom: 0;
 	padding: calc(10vh + 4rem) 4rem 4rem 4rem;
 
@@ -146,13 +162,6 @@ footer {
 	/* visibility: hidden; */
 }
 
-#profile-pic {
-	box-shadow: 0 0 10px var(--light);
-	border-radius: 15px;
-	max-width: 100%;
-	max-height: 85vh;
-}
-
 .hero-content {
 	display: flex;
 	flex-direction: column;
@@ -168,7 +177,7 @@ footer {
 	text-shadow: var(--shadow);
 }
 
-.hero-btn {
+/* .hero-btn {
 	margin: 0.3em 0.3em;
 	font-size: 1.5em;
 	text-shadow: var(--shadow);
@@ -182,24 +191,16 @@ footer {
 	background: url(../images/transparency.png);
 	border: 1px solid var(--light);
 	color: var(--light);
-}
-
-/* #movie-input {
 } */
 
-.info {
-	font-size: 10px;
-	padding: 10px;
+/* Carousel */
+.carousel {
+	background: url("../images/transparency.png");
 }
-.birthday, .height, .net-worth {
-	text-align: center;
-	padding: 5px;
+.carousel-item img {
+	max-width: 100%;
+	max-height: 50vh;
 }
-
-.name, .more-info {
-	padding: 5px;
-}
-
 
 /* ---media queries--- */
 /* nav-bar toggle alignment */
@@ -225,6 +226,19 @@ footer {
 	}
 }
 
-.carousel-item img {
-	/* height: 200px; */
+/* Search Results Page */
+.info {
+	font-size: 10px;
+	padding: 10px;
+}
+.birthday,
+.height,
+.net-worth {
+	text-align: center;
+	padding: 5px;
+}
+
+.name,
+.more-info {
+	padding: 5px;
 }

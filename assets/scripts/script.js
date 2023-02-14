@@ -1,5 +1,15 @@
 const omdbKey = "e2bf0e18";
 
+// Poster test
+const testURL = "http://www.omdbapi.com/?apikey=" + omdbKey + "&s=titanic*";
+$.ajax({
+	url: testURL,
+	method: "GET"
+}).then(function (response) {
+	console.log(response.Poster);
+	console.log(response.Title);
+});
+
 // function to pull data from omdb API for searching
 function searchMovieTitles(searchString) {
 	const queryURL =
@@ -9,19 +19,34 @@ function searchMovieTitles(searchString) {
 		method: "GET"
 	}).then(function (response) {
 		const resultsArray = response.Search;
-		const resultsDiv = $("#search-results");
-		resultsDiv.empty();
+		const resultsMenu = $("#search-menu");
+		resultsMenu.empty();
 		if (resultsArray) {
 			resultsArray.forEach((element) => {
-				const movieTitle = $("<button>");
+				const movieTitle = $("<a>");
 				movieTitle.text(element.Title + " (" + element.Year + ")");
-				movieTitle.attr("type", "button");
-				movieTitle.addClass("btn btn-secondary");
+				// movieTitle.attr("type", "button");
+				movieTitle.addClass("dropdown-item");
 				movieTitle.attr("data-movie-title", element.Title);
 				movieTitle.attr("data-movie-year", element.Year);
-				resultsDiv.append(movieTitle);
+				resultsMenu.append(movieTitle);
 			});
 		}
+		// }).then(function (response) {
+		// 	const resultsArray = response.Search;
+		// 	const resultsDiv = $("#search-results");
+		// 	resultsDiv.empty();
+		// 	if (resultsArray) {
+		// 		resultsArray.forEach((element) => {
+		// 			const movieTitle = $("<button>");
+		// 			movieTitle.text(element.Title + " (" + element.Year + ")");
+		// 			movieTitle.attr("type", "button");
+		// 			movieTitle.addClass("btn btn-secondary search-item");
+		// 			movieTitle.attr("data-movie-title", element.Title);
+		// 			movieTitle.attr("data-movie-year", element.Year);
+		// 			resultsDiv.append(movieTitle);
+		// 		});
+		// 	}
 	});
 }
 
@@ -65,17 +90,21 @@ function goToSearchResult(event) {
 
 // function to add keyup handler once document is ready
 $(function () {
-	$("#movie-input").on("keyup", function (event) {
+	$(".movie-input").on("keyup", function (event) {
 		// when key is released this function runs grabbing the text that is in the input box
-		const textString = $("#movie-input").val();
+		const textString = $(".movie-input").val();
 		// first it checks if more than 2 characters have been typed as 2 or less gives a too many results
 		// error from the API
 		if (textString.length > 2) {
 			// if more than two characters then it calls the searchMovieTitles function
 			searchMovieTitles(textString);
+			$("#search-menu").css("display", "block");
+		} else if (textString.length < 3) {
+			$("#search-menu").empty();
+			$("#search-menu").css("display", "none");
 		}
 	});
-	$("#search-results").on("click", goToSearchResult);
+	$("#search-menu").on("click", goToSearchResult);
 	if (window.location.search !== "") {
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
