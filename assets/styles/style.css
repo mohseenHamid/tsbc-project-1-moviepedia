@@ -186,17 +186,28 @@ footer {
 /* #movie-input {
 } */
 
+
+ /* modal pop up */
+.img-box {
+	padding-top: 10px;
+}
+
 .info {
 	font-size: 10px;
 	padding: 10px;
+	
 }
 .birthday, .height, .net-worth {
 	text-align: center;
-	padding: 5px;
+	padding-top: 25px;
 }
 
 .name, .more-info {
-	padding: 5px;
+	padding: 10px;
+}
+
+.modal-footer {
+	justify-content: space-between;
 }
 
 
