@@ -130,6 +130,236 @@
 			</section>
 		</div>
 
+		<!-- Movie Search Modal -->
+		<div
+			class="modal fade bd-example-modal-lg"
+			id="exampleModalCenter"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="myLargeModalLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title" id="exampleModalCenterTitle">
+							Here's your movie!
+						</h3>
+						<button
+							type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Close"
+						>
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div class="modal-body container modal-body-container">
+						<div class="row r1">
+							<div class="col-sm-4 r1-c1 img-col">
+								<div class="row test-row">
+									<img
+										id="modal-movie-poster"
+										src="./assets/images/bootstrap-icon.svg"
+										alt=""
+									/>
+								</div>
+								<div class="row test-row-2">
+									<div class="row c2-r1">
+										<div class="col-sm c2-r1-c1">placeholder</div>
+										<div class="col-sm c2-r1-c2">placeholder</div>
+										<div class="col-sm c2-r1-c3">placeholder</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-sm r1-c2 content-col">
+								<div class="content-flex">
+									<!-- <div class="row c2-r1">
+										<div class="col-sm c2-r1-c1">placeholder</div>
+										<div class="col-sm c2-r1-c2">placeholder</div>
+										<div class="col-sm c2-r1-c3">placeholder</div>
+									</div> -->
+									<div class="row c2-r2">
+										<div class="col-sm c2-r2-c1">
+											<h3 class="plot-title">Plot</h3>
+											<p class="plot-content"></p>
+										</div>
+									</div>
+									<div class="row c2-r3">
+										<div class="col-sm c2-r3-c1">
+											<h3 class="ratings-title">Ratings</h3>
+										</div>
+									</div>
+									<div class="row c2-r4">
+										<div class="col-sm c2-r4-c1 imdb"></div>
+										<div class="col-sm c2-r4-c2 rt"></div>
+										<div class="col-sm c2-r4-c3 meta"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row r2">
+							<div class="col-sm img-col">
+								<div class="card" style="width: 18rem">
+									<img
+										class="card-img-top"
+										src="./assets/images/bootstrap-icon.svg"
+										alt="Card image cap"
+									/>
+									<div class="card-body">
+										<p class="card-text">CREATOR NAME</p>
+									</div>
+								</div>
+
+								<div class="card" style="width: 18rem">
+									<img
+										class="card-img-top"
+										src="./assets/images/bootstrap-icon.svg"
+										alt="Card image cap"
+									/>
+									<div class="card-body">
+										<p class="card-text">CREATOR NAME</p>
+									</div>
+								</div>
+
+								<div class="card" style="width: 18rem">
+									<img
+										class="card-img-top"
+										src="./assets/images/bootstrap-icon.svg"
+										alt="Card image cap"
+									/>
+									<div class="card-body">
+										<p class="card-text">CREATOR NAME</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">
+							Close
+						</button>
+						<button
+							type="button"
+							id="movie-fav-save-btn"
+							class="btn btn-danger"
+						>
+							Save to Favourites
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div
+			class="modal fade"
+			id="exampleModalCenter"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="container">
+							<div class="row">
+								<div class="col-sm">
+									<div class="img-box">
+										<div class="box">
+											<img src="./assets/images/example.img" alt="exampleImg" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm">
+									<div class="info">
+										<p class="name">Mike Myers</p>
+										<p class="more-info">
+											Michael John Myers OC is a Canadian actor, comedian,
+											screenwriter, and producer. His accolades include seven
+											MTV Awards, a Primetime Emmy Award, and a Screen Actors
+											Guild Award. In 2002, he was awarded a star on the
+											Hollywood Walk of Fame. In 2017, he was named an Officer
+											of the Order of Canada for "his extensive and acclaimed
+											body of comedic work as an actor, writer, and producer."
+										</p>
+										<p class="birthday">Birthday: May 25, 1963</p>
+										<p class="height">Height: 1.73m</p>
+										<p class="net-worth">Net Worth: $200,000</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">
+							Close
+						</button>
+						<button type="button" class="btn btn-danger">
+							Save to Favourites
+						</button>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+		<!-- Creator Modal -->
+		<!-- <div
+			class="modal fade"
+			id="exampleModalCenter"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="container">
+							<div class="row">
+								<div class="col-sm">
+									<div class="img-box">
+										<div class="box">
+											<img src="./assets/images/example.img" alt="exampleImg" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm">
+									<div class="info">
+										<p class="name">Mike Myers</p>
+										<p class="more-info">
+											Michael John Myers OC is a Canadian actor, comedian,
+											screenwriter, and producer. His accolades include seven
+											MTV Awards, a Primetime Emmy Award, and a Screen Actors
+											Guild Award. In 2002, he was awarded a star on the
+											Hollywood Walk of Fame. In 2017, he was named an Officer
+											of the Order of Canada for "his extensive and acclaimed
+											body of comedic work as an actor, writer, and producer."
+										</p>
+										<p class="birthday">Birthday: May 25, 1963</p>
+										<p class="height">Height: 1.73m</p>
+										<p class="net-worth">Net Worth: $200,000</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">
+							Close
+						</button>
+						<button type="button" class="btn btn-danger">
+							Save to Favourites
+						</button>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
 		<!-- Favourites Section -->
 		<main id="favourites">
 			<!-- Movie Carousel -->
@@ -149,10 +379,21 @@
 				<!-- Slideshow Start -->
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="./assets/images/hero.png" />
+						<img src="./assets/images/hero.png" class="d-block w-100" />
+					</div>
+					<div class="carousel-item">
 						<img
-							src="https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
-						/><img src="./assets/images/bootstrap-icon.svg" />
+							src="./assets/images/bootstrap-icon.svg"
+							class="d-block w-100"
+							alt="..."
+						/>
+					</div>
+					<div class="carousel-item">
+						<img
+							src="./assets/images/bootstrap-icon.svg"
+							class="d-block w-100"
+							alt="..."
+						/>
 					</div>
 				</div>
 
@@ -178,7 +419,7 @@
 			</div>
 
 			<!-- Creators Carousel -->
-			<div class="carousel-title"><h2>Favourite Creators</h2></div>
+			<div class="carousel-title"><h2>Favourite Actors</h2></div>
 			<div id="creator-favourites" class="carousel slide" data-ride="carousel">
 				<!-- Indicators Start -->
 				<ul class="carousel-indicators">
