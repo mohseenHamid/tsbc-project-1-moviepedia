@@ -2,7 +2,7 @@ const omdbKey = "e2bf0e18";
 
 // FUNCTION FOR CELEBNINJA API
 function celebNinjaClosure(celebName) {
-	celebName = "michael jackson"; // PLACEHOLDER
+	celebName = "beyonce"; // PLACEHOLDER
 
 	function celebNinjaInner() {
 		$.ajax({
@@ -76,11 +76,12 @@ function actorSearch(actor) {
 		url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + actor,
 		contentType: "application/json"
 	}).then(function (result) {
+		$(".name").text(result.title);
 		// const actorProfile = {
-		// 	actorName: result.title,
-		// 	thumbnail: result.thumbnail.source,
+		// actorName: result.title,
+	 	// thumbnail: result.thumbnail.source,
 		// 	bio: result.extract
-		// };
+		//  };
 	});
 }
 
