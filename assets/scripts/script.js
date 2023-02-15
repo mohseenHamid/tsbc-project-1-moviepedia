@@ -2,7 +2,7 @@ const omdbKey = "e2bf0e18";
 
 // FUNCTION FOR CELEBNINJA API
 function celebNinjaClosure(celebName) {
-	celebName = "michael jackson"; // PLACEHOLDER
+	celebName = "beyonce"; // PLACEHOLDER
 
 	function celebNinjaInner() {
 		$.ajax({
@@ -11,15 +11,25 @@ function celebNinjaClosure(celebName) {
 			headers: { "X-Api-Key": "+qZ8SEACFRjRVK2XZ9RpgQ==urpaH1jT1cOiYaJ6" },
 			contentType: "application/json"
 		}).then((result) => {
-			// console.log(result[0].name);
-			// console.log(result[0].birthday);
-			// console.log(result[0].net_worth);
-			// console.log(result[0].height);
+
+			// let nameActor = result[0].name;
+			// $(".name").text(`${nameActor}`);
+
+			//$(".name").text(result[0].name);
+			console.log(result[0].name);
+			$(".birthday").text("Birthday:" + result[0].birthday);
+			console.log(result[0].birthday);
+			$(".height").text("Height:" + result[0].height);
+			 console.log(result[0].net_worth);
+			$(".net-worth").text("Net Worth:" + result[0].net_worth)
+			console.log(result[0].height);
 		});
 	}
 	return celebNinjaInner;
 }
 let celebNinja = celebNinjaClosure();
+
+celebNinja();
 
 // function to pull data from omdb API for searching
 function searchMovieTitles(searchString) {
@@ -68,11 +78,19 @@ function actorSearch(actor) {
 		url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + actor,
 		contentType: "application/json"
 	}).then(function (result) {
+
+
+		let actorImg = result.thumbnail.source;
+
+		$(".box").attr("src", actorImg);
+		$(".name").text(result.title);
+		$(".more-info").text(result.extract);
+		console.log(result);
 		// const actorProfile = {
-		// 	actorName: result.title,
-		// 	thumbnail: result.thumbnail.source,
+		// actorName: result.title,
+	 	// thumbnail: result.thumbnail.source,
 		// 	bio: result.extract
-		// };
+		//  };
 	});
 }
 
