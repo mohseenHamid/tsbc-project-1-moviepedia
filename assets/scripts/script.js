@@ -25,6 +25,7 @@ const omdbKey = "e2bf0e18";
 // console.log(add10(2)); // 12
 
 // FUNCTION FOR CELEBNINJA API
+<<<<<<< HEAD
 function celebNinjaClosure(celebName) {
 	function celebNinjaInner() {
 		$.ajax({
@@ -45,6 +46,20 @@ function celebNinjaClosure(celebName) {
 // NEED TO SET THE VALUE OF celebNinjaClosure when assigning it
 let celebNinja = celebNinjaClosure("tom hanks");
 celebNinja();
+=======
+function celebNinja(celebName) {
+	$.ajax({
+		method: "GET",
+		url: "https://api.celebrityninjas.com/v1/search?name=" + celebName,
+		headers: { "X-Api-Key": "+qZ8SEACFRjRVK2XZ9RpgQ==urpaH1jT1cOiYaJ6" },
+		contentType: "application/json"
+	}).then((result) => {
+		$(".birthday").text("Birthday:" + result[0].birthday);
+		$(".height").text("Height:" + result[0].height);
+		$(".net-worth").text("Net Worth:" + result[0].net_worth)
+	});
+}
+>>>>>>> main
 
 // function to pull data from omdb API for searching
 function searchMovieTitles(searchString) {
@@ -68,21 +83,6 @@ function searchMovieTitles(searchString) {
 				resultsMenu.append(movieTitle);
 			});
 		}
-		// }).then(function (response) {
-		// 	const resultsArray = response.Search;
-		// 	const resultsDiv = $("#search-results");
-		// 	resultsDiv.empty();
-		// 	if (resultsArray) {
-		// 		resultsArray.forEach((element) => {
-		// 			const movieTitle = $("<button>");
-		// 			movieTitle.text(element.Title + " (" + element.Year + ")");
-		// 			movieTitle.attr("type", "button");
-		// 			movieTitle.addClass("btn btn-secondary search-item");
-		// 			movieTitle.attr("data-movie-title", element.Title);
-		// 			movieTitle.attr("data-movie-year", element.Year);
-		// 			resultsDiv.append(movieTitle);
-		// 		});
-		// 	}
 	});
 }
 
@@ -128,6 +128,7 @@ function actorSearch(actor, cardNum) {
 		url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + actor,
 		contentType: "application/json"
 	}).then(function (result) {
+<<<<<<< HEAD
 		actorResult = {
 			actorName: result.title,
 			thumbnail: result.thumbnail.source,
@@ -163,6 +164,14 @@ function actorSearch(actor, cardNum) {
 		$("#actorModal").on("hide.bs.modal", function () {
 			$("#movieSearchModal").modal("show");
 		});
+=======
+
+		let actorImg = result.thumbnail.source;
+
+		$(".box").attr("src", actorImg);
+		$(".name").text(result.title);
+		$(".more-info").text(result.extract);
+>>>>>>> main
 	});
 }
 
@@ -225,14 +234,6 @@ function goToSearchResult(event) {
 	// OMDB API to get the modal row 1 details
 	getMovieDetails(movieTitle, movieYear);
 }
-// function goToSearchResult(event) {
-// 	const movieTitle = event.target.getAttribute("data-movie-title");
-// 	const movieYear = event.target.getAttribute("data-movie-year");
-// 	window.location.href =
-// 		"./search-result.html?title=" + movieTitle + "&year=" + movieYear;
-// 	// console.log(movieTitle, movieYear);
-// 	getMovieDetails(movieTitle, movieYear);
-// }
 
 function returnSearchResults(event) {
 	// when key is released this function runs grabbing the text that is in the input box
@@ -267,6 +268,13 @@ function saveMovie(e) {
 	console.log(e.parent());
 }
 
+// function to populate actor modal on click
+function populateActorModal(){
+	const actorName = $(this).attr("data-actor-name")
+	actorSearch(actorName);
+	celebNinja(actorName);
+}
+
 // Document Ready Event Handlers
 $(function () {
 	// Keyup event listener for movie search input field
@@ -274,6 +282,9 @@ $(function () {
 
 	// Click event listener for movie search menu dropdown item selection
 	$("#search-menu").on("click", goToSearchResult);
+
+	// click event listener for actor modal currently on second page
+	$("#actor-modal").on("click", populateActorModal);
 
 	// Bug: dropdown menu disappears when selecting search menu items
 	// $(".movie-input").on("click", returnSearchResults);
@@ -285,58 +296,5 @@ $(function () {
 	// 	}
 	// });
 
-	// WHAT IS THIS? Is this to set the new page URL?
-	if (window.location.search !== "") {
-		const queryString = window.location.search;
-		const urlParams = new URLSearchParams(queryString);
-		const movieTitle = urlParams.get("title");
-		const movieYear = urlParams.get("year");
-		getMovieDetails(movieTitle, movieYear);
-	}
-
 	$("#movie-fav-save-btn").on("click", saveMovie);
 });
-
-//  not sure we need this document.ready function apart from for testing
-// $(document).ready(function() {
-//   var movieName = "Avatar";
-//    movieSearch(movieName)
-//   });
-
-// dont think we need movieSearch2 and movieSearch3
-
-// function movieSearch2(movieName2) {
-
-// console.log(movieName2);
-
-//      $.ajax({
-//        method: "GET",
-//        url: "https://en.wikipedia.org/api/rest_v1/page/summary/%20Pauvre_Pierrot?redirect=true" + movieName2,
-
-//       contentType: "application/json"
-//      }).then(function (result) {
-//      console.log(result);
-//      });
-//    }
-// $(document).ready(function() {
-//   var movieName2 = "Pauvre Perrot";
-//    movieSearch2(movieName2)
-//   });
-
-//   function movieSearch3(movieName3) {
-
-//   console.log(movieName3);
-
-//        $.ajax({
-//          method: "GET",
-//          url: "https://en.wikipedia.org/api/rest_v1/page/summary/Tintin?redirect=true" + movieName3,
-
-//         contentType: "application/json"
-//        }).then(function (result) {
-//        console.log(result);
-//        });
-//      }
-//   $(document).ready(function() {
-//     var movieName3 = "Tintin";
-//      movieSearch3(movieName3)
-//     });
