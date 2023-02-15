@@ -56,4 +56,4 @@ The following is a demo of the application functionality:
 
 The following link takes you to the GitHub Pages deployment:
 
-- https://mohseenhamid.github.io/tsbc-project-1/
+- https://mohseenhamid.github.io/tsbc-project-1-moviepedia/
