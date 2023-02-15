@@ -229,6 +229,7 @@ function actorModalOpen(event) {
 		let testText = $(".c2-r1-c1").text();
 		console.log(testText);
 
+		// LINK MODAL TO ACTOR NAME
 		if (testText !== "placeholder") {
 			$("#movie-search-modal").modal("show");
 		}
