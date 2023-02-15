@@ -44,11 +44,11 @@ TBC
 
 The following link takes you to a figma wireframe for the application:
 
-- TBC
+- https://www.figma.com/file/lVVmMDlMEvevGdBxzHKyPe/tsbc-project-1---Moviepedia?t=P0byefvMboBzEBh2-6
 
 ### Mock-Up
 
-The following demo demonstrates the application functionality:
+The following is a demo of the application functionality:
 
 ![Animation going through each step. TBC](./assets/other/webpage-demo.gif)
 
@@ -56,4 +56,4 @@ The following demo demonstrates the application functionality:
 
 The following link takes you to the GitHub Pages deployment:
 
-- TBC
+- https://mohseenhamid.github.io/tsbc-project-1/

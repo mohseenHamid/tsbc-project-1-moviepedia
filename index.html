@@ -189,7 +189,7 @@
 
 						<div class="row r2">
 							<div class="col-sm img-col">
-								<a class="card card-1" style="width: 22rem" href="">
+								<a class="card card-1 actor-card" style="width: 22rem" href="">
 									<img
 										class="card-img-top card-img-1"
 										src=""
@@ -200,7 +200,7 @@
 									</div>
 								</a>
 
-								<a class="card card-2" style="width: 22rem" href="">
+								<a class="card card-2 actor-card" style="width: 22rem" href="">
 									<img
 										class="card-img-top card-img-2"
 										src=""
@@ -211,7 +211,7 @@
 									</div>
 								</a>
 
-								<a class="card card-3" style="width: 22rem" href="">
+								<a class="card card-3 actor-card" style="width: 22rem" href="">
 									<img
 										class="card-img-top card-img-3"
 										src=""
@@ -243,7 +243,7 @@
 
 		<!-- Actor Modal (Popup): Displayed upon actor card selection in movie modal -->
 		<div
-			class="modal fade"
+			class="modal fade actor-search-modal"
 			id="actor-modal"
 			tabindex="-1"
 			role="dialog"
@@ -290,7 +290,11 @@
 						<button type="button" class="btn btn-danger" data-dismiss="modal">
 							Close
 						</button>
-						<button type="button" class="btn btn-danger">
+						<button
+							id="actor-fav-save-btn"
+							type="button"
+							class="btn btn-danger"
+						>
 							Save to Favourites
 						</button>
 					</div>
@@ -301,20 +305,96 @@
 		<!-- Favourites Section -->
 		<section id="favourites">
 			<div class="favourites-title"><h2>Favourite Movies</h2></div>
-			<div id="movie-favourites" class=""></div>
+			<div id="movie-favourites" class="favourites-container"></div>
+			<div class="clear-btn-div">
+				<button
+					type="button"
+					id="clear-saved-movies-btn"
+					class="clear-storage-btn"
+				>
+					Clear Favourite Movies
+				</button>
+			</div>
 
 			<div class="favourites-title"><h2>Favourite Actors</h2></div>
-			<div id="actor-favourites" class=""></div>
-
-			<div class="favourites-title"><h2>Favourite Actors</h2></div>
+			<div id="actor-favourites" class="favourites-container"></div>
+			<div class="clear-btn-div">
+				<button
+					type="button"
+					id="clear-saved-actors-btn"
+					class="clear-storage-btn"
+				>
+					Clear Favourite Actors
+				</button>
+			</div>
 		</section>
 
+		<!-- Team Section -->
 		<section id="team-section">
 			<div class="favourites-title"><h2>The Team</h2></div>
-			<div id="team-cards" class=""></div>
+
+			<section class="text-center footer_media">
+				<div class="container p-4">
+					<div class="row">
+						<div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+							<div
+								class="bg-image hover-overlay ripple shadow-1-strong rounded"
+								data-ripple-color="light"
+							>
+								<img src="./assets/images/bootstrap-icon.svg" class="w-100" />
+								<span class="text-format"> Mohseen </span>
+								<a href="#!"> </a>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+							<div
+								class="bg-image hover-overlay ripple shadow-1-strong rounded"
+								data-ripple-color="light"
+							>
+								<img src="./assets/images/bootstrap-icon.svg" class="w-100" />
+								<span class="text-format"> Steve </span>
+								<a href="#!"> </a>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+							<div
+								class="bg-image hover-overlay ripple shadow-1-strong rounded"
+								data-ripple-color="light"
+							>
+								<img src="./assets/images/bootstrap-icon.svg" class="w-100" />
+								<span class="text-format"> Sarah </span>
+								<a href="#!"> </a>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+							<div
+								class="bg-image hover-overlay ripple shadow-1-strong rounded"
+								data-ripple-color="light"
+							>
+								<img src="./assets/images/bootstrap-icon.svg" class="w-100" />
+								<span class="text-format"> Sinthiya </span>
+								<a href="#!"> </a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 		</section>
 
-		<footer></footer>
+		<footer>
+			<div class="text-center p-3">
+				<strong> Moviepedia <a class="text-white">© 2023</a> </strong>
+			</div>
+		</footer>
 
 		<!-- SCRIPTS -->
 		<!-- Moment.js -->

@@ -132,6 +132,11 @@ function getMovieDetails(movieTitle, movieYear) {
 		for (let i = 1; i < 4; i++) {
 			actorSearch(actors[i - 1], i);
 		}
+
+		// Set movie modal attributes to be used later for localStorage
+		$("#movie-search-modal").attr("data-movie-title", movieTitle);
+		$("#movie-search-modal").attr("data-movie-year", movieYear);
+		$("#movie-search-modal").attr("data-movie-img", posterURL);
 	});
 
 	// Allows the content to update before opening
@@ -139,6 +144,11 @@ function getMovieDetails(movieTitle, movieYear) {
 		// Display movie modal upon completion
 		$("#movie-search-modal").modal("show");
 	}, 800);
+
+	// // Reopens the movie modal if actor modal is closed
+	// $(".actor-search-modal").on("hide.bs.modal", function () {
+	// 	$("#movie-search-modal").modal("show");
+	// });
 }
 
 // Callback ftn for movie selection via search menu (calls the OMDB API ftn "getMovieDetails")
@@ -159,7 +169,7 @@ function celebNinja(celebName) {
 	$.ajax({
 		method: "GET",
 		url: "https://api.celebrityninjas.com/v1/search?name=" + celebName,
-		headers: { "X-Api-Key": "+qZ8SEACFRjRVK2XZ9RpgQ==urpaH1jT1cOiYaJ6" },
+		headers: { "X-Api-Key": "ONBqt7wwcm4Bk28sesSoWjNz95nU0s6bqNFeoP7v" },
 		contentType: "application/json"
 	}).then((result) => {
 		$(".birthday").text("Birthday: " + result[0].birthday);
@@ -176,10 +186,16 @@ function actorModalSearch(actor) {
 		contentType: "application/json"
 	}).then(function (result) {
 		let actorImg = result.thumbnail.source;
+		let actorName = result.title;
+		let actorBio = result.extract;
 
 		$(".actor-modal-img").attr("src", actorImg);
-		$(".name").text(result.title);
-		$(".more-info").text(result.extract);
+		$(".name").text(actorName);
+		$(".more-info").text(actorBio);
+
+		// Set actor modal attributes to be used later for localStorage
+		$("#actor-modal").attr("data-actor-name", actorName);
+		$("#actor-modal").attr("data-actor-img", actorImg);
 	});
 }
 
@@ -204,18 +220,181 @@ function actorModalOpen(event) {
 	// Change cursor to progress to indicate the time delay
 	$(".card").css("cursor", "progress");
 
-	// Reopens the movie modal if actor modal is closed
-	$("#actor-modal").on("hide.bs.modal", function () {
+	setTimeout(() => {
 		$(".card").css("cursor", "pointer");
+	}, 1200);
+
+	// Reopens the movie modal if actor modal is closed
+	$(".actor-search-modal").on("hide.bs.modal", function () {
 		$("#movie-search-modal").modal("show");
 	});
 }
 
-// --- TO BE COMPLETED ---
+function renderFavMovies() {
+	// Avoid duplication
+	$("#movie-favourites").empty();
+
+	// Initialise array to store movie objects (properties = title, year, img) which will be pushed to localStorage)
+	let savedMoviesArray = [];
+
+	// Checking if localStorage is populated and retrieve data if so
+	if (localStorage.getItem("savedMovies") !== null) {
+		savedMoviesArray = JSON.parse(localStorage.getItem("savedMovies"));
+	}
+
+	savedMoviesArray.forEach((movie) => {
+		const titleHead = $("<h3>");
+		titleHead.text(`${movie.title} (${movie.year})`);
+
+		const imgTag = $("<img>");
+		imgTag.attr("src", movie.img);
+		imgTag.addClass("favImg");
+		imgTag.css("cursor", "pointer");
+		const imgDiv = $("<div>");
+		imgDiv.append(imgTag);
+
+		const movieDiv = $("<a>");
+		movieDiv.addClass("favourites-tile");
+		movieDiv.attr("data-movie-title", movie.title);
+		movieDiv.attr("data-movie-year", movie.year);
+		movieDiv.attr("data-movie-img", movie.img);
+		movieDiv.append(titleHead);
+		movieDiv.prepend(imgDiv);
+		movieDiv.on("click", ".favImg", function () {
+			getMovieDetails(movie.title, movie.year);
+		});
+
+		$("#movie-favourites").append(movieDiv);
+	});
+}
+renderFavMovies();
+
 // Callback ftn for save movie btn in movie modal
 // Saves movie to favourites carousel
 function saveMovie(e) {
-	console.log(e.parent());
+	e.preventDefault();
+
+	// --- Step 1: Save favourite movie data to localStorage ---
+	// Extract movie data from the movie-search-modal attributes for storage
+	const movieTitle = $("#movie-search-modal").attr("data-movie-title");
+	const movieYear = $("#movie-search-modal").attr("data-movie-year");
+	const movieImg = $("#movie-search-modal").attr("data-movie-img");
+	console.log(movieTitle, movieYear, movieImg);
+
+	// Initialise array to store movie objects (properties = title, year, img) which will be pushed to localStorage)
+	let savedMoviesArray = [];
+
+	// Checking if localStorage is populated and retrieve data if so
+	if (localStorage.getItem("savedMovies") !== null) {
+		savedMoviesArray = JSON.parse(localStorage.getItem("savedMovies"));
+	}
+
+	// Assign movie data to object
+	let favMovie = {
+		title: movieTitle,
+		year: movieYear,
+		img: movieImg
+	};
+
+	// Push movie object to savedMoviesArray only if it doesn't exist
+	let searchTest = savedMoviesArray.find((movie) => movie.title == movieTitle);
+
+	if (!searchTest) {
+		console.log("MOVIE IS NOT SAVED");
+		savedMoviesArray.push(favMovie);
+		console.log(savedMoviesArray);
+
+		// Store updated savedMoviesArray as string
+		localStorage.setItem("savedMovies", JSON.stringify(savedMoviesArray));
+	} else {
+		console.log("MOVIE IS ALREADY SAVED");
+		return;
+	}
+
+	// --- Step 2: Render favourite movies section with localStorage data ---
+	renderFavMovies();
+}
+
+function renderFavActors() {
+	// Empty array first to avoid duplication in the div
+	$("#actor-favourites").empty();
+
+	// Initialise array to store actor objects (properties = title, year, img) which will be pushed to localStorage)
+	let savedActorsArray = [];
+
+	// Checking if localStorage is populated and retrieve data if so
+	if (localStorage.getItem("savedActors") !== null) {
+		savedActorsArray = JSON.parse(localStorage.getItem("savedActors"));
+	}
+
+	savedActorsArray.forEach((actor) => {
+		const titleHead = $("<h3>");
+		titleHead.text(`${actor.name}`);
+
+		const imgTag = $("<img>");
+		imgTag.attr("src", actor.img);
+		imgTag.addClass("favImg");
+		imgTag.attr("data-actor-name", actor.name);
+
+		imgTag.css("cursor", "pointer");
+		const imgDiv = $("<div>");
+		imgDiv.append(imgTag);
+
+		const actorDiv = $("<a>");
+		actorDiv.addClass("favourites-tile");
+		actorDiv.attr("data-actor-name", actor.name);
+		actorDiv.attr("data-actor-img", actor.img);
+		actorDiv.append(titleHead);
+		actorDiv.prepend(imgDiv);
+		actorDiv.on("click", ".favImg", actorModalOpen);
+
+		$("#actor-favourites").append(actorDiv);
+	});
+}
+renderFavActors();
+
+// Callback ftn for save actor btn in actor modal
+// Saves actor to favourites carousel
+function saveActor(e) {
+	e.preventDefault();
+
+	// --- Step 1: Save favourite actor data to localStorage ---
+	// Extract actor data from the actor-modal attributes for storage
+	const actorName = $("#actor-modal").attr("data-actor-name");
+	const actorImg = $("#actor-modal").attr("data-actor-img");
+	console.log(actorName, actorImg);
+
+	// Initialise array to store actor objects (properties = title, year, img) which will be pushed to localStorage)
+	let savedActorsArray = [];
+
+	// Checking if localStorage is populated and retrieve data if so
+	if (localStorage.getItem("savedActors") !== null) {
+		savedActorsArray = JSON.parse(localStorage.getItem("savedActors"));
+	}
+
+	// Assign actor data to object
+	let favActor = {
+		name: actorName,
+		img: actorImg
+	};
+
+	// Push actor object to savedActorsArray only if it doesn't exist
+	let searchTest = savedActorsArray.find((actor) => actor.name == actorName);
+
+	if (!searchTest) {
+		console.log("ACTOR IS NOT SAVED");
+		savedActorsArray.push(favActor);
+		console.log(savedActorsArray);
+
+		// Store updated savedActorsArray as string
+		localStorage.setItem("savedActors", JSON.stringify(savedActorsArray));
+	} else {
+		console.log("ACTOR IS ALREADY SAVED");
+		return;
+	}
+
+	// --- Step 2: Render favourite actors section with localStorage data ---
+	renderFavActors();
 }
 
 // Document Ready Event Handlers
@@ -227,10 +406,35 @@ $(function () {
 	$("#search-menu").on("click", goToSearchResult);
 
 	// Click event listener for actor modal (selection via movie modal actor cards)
-	$(".card").on("click", actorModalOpen);
+	$(".actor-card").on("click", actorModalOpen);
 
-	// Click event listener for save movie btn in btn modal
-	$("#movie-fav-save-btn").on("click", saveMovie);
+	// IS THIS EVENT DELEGATION CORRECT? I WANT THE TARGET TO BE THE MODAL
+	// Click event listener for save movie btn in movie modal
+	$("#movie-search-modal").on("click", "#movie-fav-save-btn", saveMovie);
+
+	// Click event listener for save actor btn in actor modal
+	$("#actor-modal").on("click", "#actor-fav-save-btn", saveActor);
+
+	// --- CLEAR LOCALSTORAGE ---
+	// Clear favourite movies
+	$("#clear-saved-movies-btn").on("click", function (e) {
+		e.preventDefault();
+		console.log("BUTTON CLICKED");
+
+		localStorage.removeItem("savedMovies");
+
+		$("#movie-favourites").empty();
+	});
+
+	// Clear favourite actors
+	$("#clear-saved-actors-btn").on("click", function (e) {
+		e.preventDefault();
+		console.log("BUTTON CLICKED");
+
+		localStorage.removeItem("savedActors");
+
+		$("#actor-favourites").empty();
+	});
 });
 
 /* 
@@ -238,4 +442,6 @@ $(function () {
 1) Dropdown menu toggles while typing
 2) Favourites navigation dropdown item BG fixes on focus
 3) Movie modal displays cards when data is not successfully retrieved e.g. Attack on Titan 
+4) On closing favourites div actor-modal, movie modal shows up
+5) celebNinja API error
  */
