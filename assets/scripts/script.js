@@ -8,18 +8,9 @@ function celebNinja(celebName) {
 		headers: { "X-Api-Key": "+qZ8SEACFRjRVK2XZ9RpgQ==urpaH1jT1cOiYaJ6" },
 		contentType: "application/json"
 	}).then((result) => {
-
-		// let nameActor = result[0].name;
-		// $(".name").text(`${nameActor}`);
-
-		//$(".name").text(result[0].name);
-		console.log(result[0].name);
 		$(".birthday").text("Birthday:" + result[0].birthday);
-		console.log(result[0].birthday);
 		$(".height").text("Height:" + result[0].height);
-			console.log(result[0].net_worth);
 		$(".net-worth").text("Net Worth:" + result[0].net_worth)
-		console.log(result[0].height);
 	});
 }
 
@@ -45,21 +36,6 @@ function searchMovieTitles(searchString) {
 				resultsMenu.append(movieTitle);
 			});
 		}
-		// }).then(function (response) {
-		// 	const resultsArray = response.Search;
-		// 	const resultsDiv = $("#search-results");
-		// 	resultsDiv.empty();
-		// 	if (resultsArray) {
-		// 		resultsArray.forEach((element) => {
-		// 			const movieTitle = $("<button>");
-		// 			movieTitle.text(element.Title + " (" + element.Year + ")");
-		// 			movieTitle.attr("type", "button");
-		// 			movieTitle.addClass("btn btn-secondary search-item");
-		// 			movieTitle.attr("data-movie-title", element.Title);
-		// 			movieTitle.attr("data-movie-year", element.Year);
-		// 			resultsDiv.append(movieTitle);
-		// 		});
-		// 	}
 	});
 }
 
@@ -71,18 +47,11 @@ function actorSearch(actor) {
 		contentType: "application/json"
 	}).then(function (result) {
 
-
 		let actorImg = result.thumbnail.source;
 
 		$(".box").attr("src", actorImg);
 		$(".name").text(result.title);
 		$(".more-info").text(result.extract);
-		console.log(result);
-		// const actorProfile = {
-		// actorName: result.title,
-	 	// thumbnail: result.thumbnail.source,
-		// 	bio: result.extract
-		//  };
 	});
 }
 
@@ -146,14 +115,6 @@ function goToSearchResult(event) {
 	// OMDB API to get the modal row 1 details
 	getMovieDetails(movieTitle, movieYear);
 }
-// function goToSearchResult(event) {
-// 	const movieTitle = event.target.getAttribute("data-movie-title");
-// 	const movieYear = event.target.getAttribute("data-movie-year");
-// 	window.location.href =
-// 		"./search-result.html?title=" + movieTitle + "&year=" + movieYear;
-// 	// console.log(movieTitle, movieYear);
-// 	getMovieDetails(movieTitle, movieYear);
-// }
 
 function returnSearchResults(event) {
 	// when key is released this function runs grabbing the text that is in the input box
@@ -216,58 +177,5 @@ $(function () {
 	// 	}
 	// });
 
-	// WHAT IS THIS? Is this to set the new page URL?
-	if (window.location.search !== "") {
-		const queryString = window.location.search;
-		const urlParams = new URLSearchParams(queryString);
-		const movieTitle = urlParams.get("title");
-		const movieYear = urlParams.get("year");
-		getMovieDetails(movieTitle, movieYear);
-	}
-
 	$("#movie-fav-save-btn").on("click", saveMovie);
 });
-
-//  not sure we need this document.ready function apart from for testing
-// $(document).ready(function() {
-//   var movieName = "Avatar";
-//    movieSearch(movieName)
-//   });
-
-// dont think we need movieSearch2 and movieSearch3
-
-// function movieSearch2(movieName2) {
-
-// console.log(movieName2);
-
-//      $.ajax({
-//        method: "GET",
-//        url: "https://en.wikipedia.org/api/rest_v1/page/summary/%20Pauvre_Pierrot?redirect=true" + movieName2,
-
-//       contentType: "application/json"
-//      }).then(function (result) {
-//      console.log(result);
-//      });
-//    }
-// $(document).ready(function() {
-//   var movieName2 = "Pauvre Perrot";
-//    movieSearch2(movieName2)
-//   });
-
-//   function movieSearch3(movieName3) {
-
-//   console.log(movieName3);
-
-//        $.ajax({
-//          method: "GET",
-//          url: "https://en.wikipedia.org/api/rest_v1/page/summary/Tintin?redirect=true" + movieName3,
-
-//         contentType: "application/json"
-//        }).then(function (result) {
-//        console.log(result);
-//        });
-//      }
-//   $(document).ready(function() {
-//     var movieName3 = "Tintin";
-//      movieSearch3(movieName3)
-//     });
