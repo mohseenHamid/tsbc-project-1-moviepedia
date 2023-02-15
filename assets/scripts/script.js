@@ -1,9 +1,31 @@
 const omdbKey = "e2bf0e18";
 
+// TEST CLOSURE
+// function makeFunc(nameInput) {
+// 	function displayName() {
+// 		console.log(nameInput);
+// 	}
+// 	return displayName;
+// }
+
+// const myFunc = makeFunc("Mohseen");
+// myFunc();
+
+// // TEST CLOSURE 2
+// function makeAdder(x) {
+// 	return function (y) {
+// 		return x + y;
+// 	};
+// }
+
+// const add5 = makeAdder(5);
+// const add10 = makeAdder(10);
+
+// console.log(add5(2)); // 7
+// console.log(add10(2)); // 12
+
 // FUNCTION FOR CELEBNINJA API
 function celebNinjaClosure(celebName) {
-	// let celebName = inputName; // PLACEHOLDER
-
 	function celebNinjaInner() {
 		$.ajax({
 			method: "GET",
@@ -19,7 +41,10 @@ function celebNinjaClosure(celebName) {
 	}
 	return celebNinjaInner;
 }
-let celebNinja = celebNinjaClosure();
+
+// NEED TO SET THE VALUE OF celebNinjaClosure when assigning it
+let celebNinja = celebNinjaClosure("tom hanks");
+celebNinja();
 
 // function to pull data from omdb API for searching
 function searchMovieTitles(searchString) {
@@ -127,6 +152,10 @@ function actorSearch(actor, cardNum) {
 			console.log("MODAL OPEN");
 			$("#actorModal").modal("show");
 			$("#movieSearchModal").modal("hide");
+
+			// add data to actor modal
+			$(".name").text(actorResult.actorName);
+			$(".more-info").text(actorResult.bio);
 		}
 		$(card).on("click", actorModalOpen);
 
