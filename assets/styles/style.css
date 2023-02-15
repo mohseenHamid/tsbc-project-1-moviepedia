@@ -65,21 +65,15 @@ p {
 }
 
 /* ---nav styles--- */
-.customNav {
-	min-width: 100%;
-	min-height: 10vh;
-	background: var(--dark-red);
-	/* background: url("../images/transparency.png");
-	background-size: cover; */
-	padding: 1rem 3rem;
-}
-
+.customNav,
 footer {
 	min-width: 100%;
 	min-height: 10vh;
-	background: var(--dark-red);
+	/* background: var(--dark-red); */
+	background: url("../images/transparency.png");
 	background-size: cover;
 	padding: 1rem 3rem;
+	opacity: 0.8;
 }
 
 .nav-brand-name,
@@ -210,7 +204,8 @@ footer {
 	border-radius: 5px;
 	font-size: 1.5em;
 }
-.movie-input:hover {
+.movie-input:hover,
+.favImg:hover {
 	box-shadow: 0 0 5px var(--light);
 }
 
@@ -390,3 +385,33 @@ footer {
 .net-worth {
 	margin-top: 1rem;
 }
+
+/* Team section */
+/* .footer_media {
+	min-width: 100%;
+	min-height: 10vh;
+	background-color: var(--dark-red);
+	background-size: cover;
+	padding: 1rem 3rem;
+}
+.footer_media h3 {
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+.row {
+	align-items: center;
+	justify-content: center;
+}
+.row img {
+	border: 2px solid #ddd;
+	border-radius: 5px;
+	padding: 5px;
+	width: 160px;
+	height: 100%;
+	gap: 20px;
+	cursor: pointer;
+}
+.footer_media img:hover {
+	transform: translateY(-10px);
+} */
