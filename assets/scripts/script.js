@@ -1,67 +1,8 @@
+// OMDB API Key
 const omdbKey = "e2bf0e18";
 
-// TEST CLOSURE
-// function makeFunc(nameInput) {
-// 	function displayName() {
-// 		console.log(nameInput);
-// 	}
-// 	return displayName;
-// }
-
-// const myFunc = makeFunc("Mohseen");
-// myFunc();
-
-// // TEST CLOSURE 2
-// function makeAdder(x) {
-// 	return function (y) {
-// 		return x + y;
-// 	};
-// }
-
-// const add5 = makeAdder(5);
-// const add10 = makeAdder(10);
-
-// console.log(add5(2)); // 7
-// console.log(add10(2)); // 12
-
-// FUNCTION FOR CELEBNINJA API
-<<<<<<< HEAD
-function celebNinjaClosure(celebName) {
-	function celebNinjaInner() {
-		$.ajax({
-			method: "GET",
-			url: "https://api.celebrityninjas.com/v1/search?name=" + celebName,
-			headers: { "X-Api-Key": "+qZ8SEACFRjRVK2XZ9RpgQ==urpaH1jT1cOiYaJ6" },
-			contentType: "application/json"
-		}).then((result) => {
-			console.log(result[0].name);
-			console.log(result[0].birthday);
-			console.log(result[0].net_worth);
-			console.log(result[0].height);
-		});
-	}
-	return celebNinjaInner;
-}
-
-// NEED TO SET THE VALUE OF celebNinjaClosure when assigning it
-let celebNinja = celebNinjaClosure("tom hanks");
-celebNinja();
-=======
-function celebNinja(celebName) {
-	$.ajax({
-		method: "GET",
-		url: "https://api.celebrityninjas.com/v1/search?name=" + celebName,
-		headers: { "X-Api-Key": "+qZ8SEACFRjRVK2XZ9RpgQ==urpaH1jT1cOiYaJ6" },
-		contentType: "application/json"
-	}).then((result) => {
-		$(".birthday").text("Birthday:" + result[0].birthday);
-		$(".height").text("Height:" + result[0].height);
-		$(".net-worth").text("Net Worth:" + result[0].net_worth)
-	});
-}
->>>>>>> main
-
-// function to pull data from omdb API for searching
+// Ftn to populate the movie search menu dropdown using data retrieved from OMDB API
+// Called in the movie search callback ftn "returnSearchResults"
 function searchMovieTitles(searchString) {
 	const queryURL =
 		"http://www.omdbapi.com/?apikey=" + omdbKey + "&s=" + searchString + "*";
@@ -86,96 +27,66 @@ function searchMovieTitles(searchString) {
 	});
 }
 
-// function to find actor details from wikipedia
-// function actorSearch(actor) {
-// 	return Q(
-// 		$.ajax({
-// 			method: "GET",
-// 			url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + actor,
-// 			contentType: "application/json"
-// 		})
-// 	);
-// }
-// console.log(actorSearch("tom_hanks"));
+// Callback ftn for search bar typing input
+function returnSearchResults(event) {
+	// Grabs the input field text and stores in variable
+	const textString = $(".movie-input").val();
 
-// function actorSearch(actor, cardNum) {
-// 	$.ajax({
-// 		method: "GET",
-// 		url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + actor,
-// 		contentType: "application/json"
-// 	}).then(function (result) {
-// 		const actorProfile = {
-// 			actorName: result.title,
-// 			thumbnail: result.thumbnail.source,
-// 			bio: result.extract
-// 		};
+	// Sets dropdown display default as "none" to avoid displaying an empty dropdown display while API is running
+	$("#search-menu").css("display", "none");
 
-// 		// Extracting card label
-// 		let card = `.card-${cardNum}`;
-// 		let cardTitle = `.card-title${cardNum}`;
-// 		let cardImg = `.card-img-${cardNum}`;
+	// Prevents response results for <2 characters as <2 gives too many results
+	if (textString.length > 2 && event.keyCode !== 27) {
+		// If >2 characters are typed, the OMDB API "searchMovieTitles" ftn is called to populate the search menu
+		searchMovieTitles(textString);
 
-// 		// assign card properties
-// 		$(cardTitle).text(`${actorProfile.actorName}`);
-// 	});
-// }
+		// Only displays the search menu once API returns data
+		// Solves bug: empty dropdown list is shown while API runs
+		setTimeout(() => {
+			if ($("#search-menu").children().length == 0) {
+				$("#search-menu").css("display", "none");
+			} else {
+				$("#search-menu").css("display", "block");
+			}
+		}, 500);
+	} else if (textString.length < 3) {
+		$("#search-menu").empty();
+	}
+	// Enables the escape key to clear the input field
+	else if (event.keyCode == 27) {
+		$(this).val("");
+		$("#search-menu").empty();
+	}
+}
 
-// let actorProfile = {};
-
+// Function to populate actors' cards on movie modal (click on actor card)
 function actorSearch(actor, cardNum) {
 	$.ajax({
 		method: "GET",
 		url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + actor,
 		contentType: "application/json"
 	}).then(function (result) {
-<<<<<<< HEAD
 		actorResult = {
 			actorName: result.title,
 			thumbnail: result.thumbnail.source,
 			bio: result.extract
 		};
-		// Object.assign(actorProfile, actorResult);
 
 		// Extracting card label
 		let card = `.card-${cardNum}`;
 		let cardTitle = `.card-title-${cardNum}`;
 		let cardImg = `.card-img-${cardNum}`;
 
-		// assign card properties
+		// Assign card properties
 		$(cardImg).attr("src", actorResult.thumbnail);
 		$(cardTitle).text(actorResult.actorName);
-		// $(cardImg).attr("src", actorProfile.thumbnail);
-		// $(cardTitle).text(actorProfile.actorName);
 
-		// click event handler for movie modal cards
-		function actorModalOpen(event) {
-			event.preventDefault();
-			console.log("MODAL OPEN");
-			$("#actorModal").modal("show");
-			$("#movieSearchModal").modal("hide");
-
-			// add data to actor modal
-			$(".name").text(actorResult.actorName);
-			$(".more-info").text(actorResult.bio);
-		}
-		$(card).on("click", actorModalOpen);
-
-		// deals with closing actor modal
-		$("#actorModal").on("hide.bs.modal", function () {
-			$("#movieSearchModal").modal("show");
-		});
-=======
-
-		let actorImg = result.thumbnail.source;
-
-		$(".box").attr("src", actorImg);
-		$(".name").text(result.title);
-		$(".more-info").text(result.extract);
->>>>>>> main
+		// Assign data attribute of actor name to the card to use later for actor modal
+		$(card).attr("data-actor-name", actorResult.actorName);
 	});
 }
 
-// function to pull data from omdb API for data of selected movie
+// Ftn called in the movie selection callback to pull selected movie's data from the OMDB API to populate modal
 function getMovieDetails(movieTitle, movieYear) {
 	const movieURL =
 		"http://www.omdbapi.com/?apikey=" +
@@ -188,6 +99,7 @@ function getMovieDetails(movieTitle, movieYear) {
 		url: movieURL,
 		method: "GET"
 	}).then(function (response) {
+		// Assign response data to variables
 		let posterURL = response.Poster;
 		let movieTitle = response.Title;
 		let movieYear = response.Year;
@@ -195,9 +107,10 @@ function getMovieDetails(movieTitle, movieYear) {
 		let moviePlot = response.Plot;
 		let movieRatedTag = response.Rated;
 		let movieRatings = response.Ratings;
+		// Fed into the Wiki API response ftn "actorSearch"
 		let actors = response.Actors.split(",");
 
-		// Set movie modal row 1 properties/values
+		// Populate movie modal movie details with OMDB API data
 		$("#modal-movie-poster").attr("src", posterURL);
 		$(".c2-r1-c1").text(`${movieTitle} (${movieYear})`);
 		$(".c2-r1-c2").text(`Rated: ${movieRatedTag}`);
@@ -214,16 +127,22 @@ function getMovieDetails(movieTitle, movieYear) {
 				`${movieRatings[i - 1].Source}: ${movieRatings[i - 1].Value}`
 			);
 		}
-		// Set movie modal row 2 properties/values using Wiki API
+
+		// Populate the modal's actor cards using Wiki API
 		for (let i = 1; i < 4; i++) {
 			actorSearch(actors[i - 1], i);
 		}
 	});
-	// Display modal
-	$("#movieSearchModal").modal("show");
+
+	// Allows the content to update before opening
+	setTimeout(() => {
+		// Display movie modal upon completion
+		$("#movie-search-modal").modal("show");
+	}, 800);
 }
-// function to get movieDetails from data attributes and load search-result with those details
-//  as parameters
+
+// Callback ftn for movie selection via search menu (calls the OMDB API ftn "getMovieDetails")
+// Extracts HTML data attributes from target and feeds them into the OMDB API ftn as parameters
 function goToSearchResult(event) {
 	$(".movie-input").val("");
 	$("#search-menu").css("display", "none");
@@ -231,48 +150,72 @@ function goToSearchResult(event) {
 	const movieTitle = event.target.getAttribute("data-movie-title");
 	const movieYear = event.target.getAttribute("data-movie-year");
 
-	// OMDB API to get the modal row 1 details
+	// OMDB API ftn to retrieve required movie data for the movie modal
 	getMovieDetails(movieTitle, movieYear);
 }
 
-function returnSearchResults(event) {
-	// when key is released this function runs grabbing the text that is in the input box
-	const textString = $(".movie-input").val();
-	// Sets dropdown display default as "none" to solve empty dropdown display bug while API is being called
-	$("#search-menu").css("display", "none");
-
-	// first it checks if more than 2 characters have been typed as 2 or less gives too many results
-	// error from the API
-	if (textString.length > 2 && event.keyCode !== 27) {
-		// if more than two characters then it calls the searchMovieTitles function
-		searchMovieTitles(textString);
-
-		// Solve bug: code runs before API call is completed
-		setTimeout(() => {
-			if ($("#search-menu").children().length == 0) {
-				$("#search-menu").css("display", "none");
-			} else {
-				$("#search-menu").css("display", "block");
-			}
-		}, 500);
-	} else if (textString.length < 3) {
-		$("#search-menu").empty();
-	} else if (event.keyCode == 27) {
-		$(this).val("");
-		$("#search-menu").empty();
-	}
+// Callback ftn to populate actor modal with CelebNinja API data
+function celebNinja(celebName) {
+	$.ajax({
+		method: "GET",
+		url: "https://api.celebrityninjas.com/v1/search?name=" + celebName,
+		headers: { "X-Api-Key": "+qZ8SEACFRjRVK2XZ9RpgQ==urpaH1jT1cOiYaJ6" },
+		contentType: "application/json"
+	}).then((result) => {
+		$(".birthday").text("Birthday: " + result[0].birthday);
+		$(".height").text("Height: " + result[0].height + "m");
+		$(".net-worth").text("Net Worth: $" + result[0].net_worth);
+	});
 }
 
-// Saving movie to favourites carousel
+// Callback ftn (for actors' card selection in movie modal) which extracts Wiki API data to populate the actor modal
+function actorModalSearch(actor) {
+	$.ajax({
+		method: "GET",
+		url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + actor,
+		contentType: "application/json"
+	}).then(function (result) {
+		let actorImg = result.thumbnail.source;
+
+		$(".actor-modal-img").attr("src", actorImg);
+		$(".name").text(result.title);
+		$(".more-info").text(result.extract);
+	});
+}
+
+// Click event handler for movie modal cards
+function actorModalOpen(event) {
+	event.preventDefault();
+
+	// Retrieve the actor name using the data attribute assigned to the card earlier
+	const actorName = $(this).attr("data-actor-name");
+
+	// Call the wiki API and celebNinja API ftns to populate actor modal
+	actorModalSearch(actorName);
+	celebNinja(actorName);
+
+	// Allows the content to update before opening
+	setTimeout(() => {
+		// Display the actor modal and hide the movie modal
+		$("#actor-modal").modal("show");
+		$("#movie-search-modal").modal("hide");
+	}, 1200);
+
+	// Change cursor to progress to indicate the time delay
+	$(".card").css("cursor", "progress");
+
+	// Reopens the movie modal if actor modal is closed
+	$("#actor-modal").on("hide.bs.modal", function () {
+		$(".card").css("cursor", "pointer");
+		$("#movie-search-modal").modal("show");
+	});
+}
+
+// --- TO BE COMPLETED ---
+// Callback ftn for save movie btn in movie modal
+// Saves movie to favourites carousel
 function saveMovie(e) {
 	console.log(e.parent());
-}
-
-// function to populate actor modal on click
-function populateActorModal(){
-	const actorName = $(this).attr("data-actor-name")
-	actorSearch(actorName);
-	celebNinja(actorName);
 }
 
 // Document Ready Event Handlers
@@ -283,18 +226,16 @@ $(function () {
 	// Click event listener for movie search menu dropdown item selection
 	$("#search-menu").on("click", goToSearchResult);
 
-	// click event listener for actor modal currently on second page
-	$("#actor-modal").on("click", populateActorModal);
+	// Click event listener for actor modal (selection via movie modal actor cards)
+	$(".card").on("click", actorModalOpen);
 
-	// Bug: dropdown menu disappears when selecting search menu items
-	// $(".movie-input").on("click", returnSearchResults);
-	// $(".movie-input").focusout((e) => {
-	// 	if (e.target !== $("#search-menu")) {
-	// 		$("#search-menu").css("display", "none");
-	// 	} else {
-	// 		$("#search-menu").css("display", "block");
-	// 	}
-	// });
-
+	// Click event listener for save movie btn in btn modal
 	$("#movie-fav-save-btn").on("click", saveMovie);
 });
+
+/* 
+--- BUGS ---
+1) Dropdown menu toggles while typing
+2) Favourites navigation dropdown item BG fixes on focus
+3) Movie modal displays cards when data is not successfully retrieved e.g. Attack on Titan 
+ */

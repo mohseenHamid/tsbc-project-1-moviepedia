@@ -271,8 +271,7 @@ footer {
 	}
 }
 
-/* Search Results Page */
-/* modal pop up */
+/* Movie modal*/
 .modal-content {
 	background: var(--dark-red);
 	color: var(--light);
@@ -284,7 +283,7 @@ footer {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	background: wheat;
+	background: var(--light);
 }
 
 .test-row,
@@ -294,13 +293,6 @@ footer {
 	justify-content: center;
 	align-items: center;
 }
-
-/* .r1-c1 {
-	display: flex;
-	justify-content: center;
-	align-items: flex-start;
-	background: wheat;
-} */
 
 .c2-r1 {
 	display: flex;
@@ -339,7 +331,8 @@ footer {
 	justify-content: center;
 }
 
-.plot-content {
+.plot-content,
+.more-info {
 	text-align: justify;
 }
 
@@ -362,23 +355,6 @@ footer {
 	gap: 3rem;
 }
 
-.info {
-	font-size: 10px;
-	padding: 10px;
-}
-
-.name,
-.more-info {
-	padding: 5px;
-}
-
-.birthday,
-.height,
-.net-worth {
-	text-align: center;
-	padding: 5px;
-}
-
 .card {
 	background: url("../images/transparency.png");
 	text-align: center;
@@ -386,4 +362,31 @@ footer {
 .card:hover {
 	text-decoration: none;
 	box-shadow: 0 0 0.5em var(--light);
+}
+
+/* Actor modal */
+.actor-modal-body,
+.img-box {
+	padding: 0;
+	margin: 0;
+}
+
+.actor-modal-img {
+	max-width: 100%;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	padding: 0 0 0 3rem;
+	gap: 3rem;
+}
+
+#actor-stats h4 {
+	margin-bottom: 2rem;
+}
+
+.height,
+.net-worth {
+	margin-top: 1rem;
 }
