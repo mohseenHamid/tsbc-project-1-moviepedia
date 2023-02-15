@@ -5,7 +5,7 @@ const omdbKey = "e2bf0e18";
 // Called in the movie search callback ftn "returnSearchResults"
 function searchMovieTitles(searchString) {
 	const queryURL =
-		"http://www.omdbapi.com/?apikey=" + omdbKey + "&s=" + searchString + "*";
+		"https://www.omdbapi.com/?apikey=" + omdbKey + "&s=" + searchString + "*";
 	$.ajax({
 		url: queryURL,
 		method: "GET"
@@ -89,7 +89,7 @@ function actorSearch(actor, cardNum) {
 // Ftn called in the movie selection callback to pull selected movie's data from the OMDB API to populate modal
 function getMovieDetails(movieTitle, movieYear) {
 	const movieURL =
-		"http://www.omdbapi.com/?apikey=" +
+		"https://www.omdbapi.com/?apikey=" +
 		omdbKey +
 		"&plot=full&t=" +
 		movieTitle +
