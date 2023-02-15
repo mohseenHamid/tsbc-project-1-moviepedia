@@ -149,6 +149,10 @@ function getMovieDetails(movieTitle, movieYear) {
 	// $(".actor-search-modal").on("hide.bs.modal", function () {
 	// 	$("#movie-search-modal").modal("show");
 	// });
+	// Reopens the movie modal if actor modal is closed
+	$(".actor-search-modal").on("hide.bs.modal", function () {
+		$("#movie-search-modal").modal("show");
+	});
 }
 
 // Callback ftn for movie selection via search menu (calls the OMDB API ftn "getMovieDetails")
@@ -223,11 +227,6 @@ function actorModalOpen(event) {
 	setTimeout(() => {
 		$(".card").css("cursor", "pointer");
 	}, 1200);
-
-	// Reopens the movie modal if actor modal is closed
-	$(".actor-search-modal").on("hide.bs.modal", function () {
-		$("#movie-search-modal").modal("show");
-	});
 }
 
 function renderFavMovies() {

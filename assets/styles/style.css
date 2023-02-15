@@ -77,7 +77,6 @@ footer {
 	background: url("../images/transparency.png");
 	background-size: cover;
 	padding: 1rem 3rem;
-	opacity: 0.8;
 }
 
 .nav-brand-name,
@@ -178,22 +177,6 @@ footer {
 	font-family: "homenaje";
 	text-shadow: var(--shadow);
 }
-
-/* .hero-btn {
-	margin: 0.3em 0.3em;
-	font-size: 1.5em;
-	text-shadow: var(--shadow);
-	background: var(--dark);
-	border: 1px solid var(--light);
-	border-radius: 15px;
-}
-.hero-btn:hover,
-.hero-btn:focus {
-	box-shadow: 0 0 0.5em var(--light);
-	background: url(../images/transparency.png);
-	border: 1px solid var(--light);
-	color: var(--light);
-} */
 
 /* Input Field */
 .search-div {
