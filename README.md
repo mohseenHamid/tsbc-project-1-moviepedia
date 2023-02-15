@@ -2,7 +2,7 @@
 
 ## Description
 
-Build a front-end web service to allow users to search up information about a film including key actors and creators. This app will run in the browser, and will feature dynamically updated HTML and CSS powered by JavaScript code.
+Build a front-end web service to allow users to search up information about a film including key actors. This app will run in the browser, and will feature dynamically updated HTML and CSS powered by JavaScript code.
 
 ## User Story
 
@@ -36,7 +36,7 @@ SO THAT I can get information about the movie, the actors, and other creators
 
 ## Usage
 
-TBC
+Look up a film using the search bar. Movie suggestions will display as you type in a few letters. Select a film from the dropdown menu. A modal will pop up displaying key information about the film such as the runtime, release year and the plot. Cards will also be displayed on the modal of 3 key actors. Select the actor cards to trigger another modal which will display key information about the actor. If you want to store a movie or an actor in the favourites section, select the "Save to Favourites" button on the respective modal. The favourites section on the main page will display your saved movies and actors. Selecting either of the clear favourites buttons on the main page will erase their respective favourites section.
 
 ## Webpage
 
@@ -56,4 +56,4 @@ The following is a demo of the application functionality:
 
 The following link takes you to the GitHub Pages deployment:
 
-- https://mohseenhamid.github.io/tsbc-project-1/
+- https://mohseenhamid.github.io/tsbc-project-1-moviepedia/

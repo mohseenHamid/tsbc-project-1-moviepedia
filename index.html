@@ -74,7 +74,7 @@
 					<!-- Dropdown navigation button to Favourites section -->
 					<li class="nav-item dropdown favourites-dropdown">
 						<a class="nav-link dropdown-toggle" id="navbarDropdown">
-							<h3>Favourites</h3>
+							<h3 class="nav-favourites-item">Favourites</h3>
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="#movie-favourites">Movies</a>
@@ -304,38 +304,42 @@
 
 		<!-- Favourites Section -->
 		<section id="favourites">
-			<div class="favourites-title"><h2>Favourite Movies</h2></div>
-			<div id="movie-favourites" class="favourites-container"></div>
-			<div class="clear-btn-div">
-				<button
-					type="button"
-					id="clear-saved-movies-btn"
-					class="clear-storage-btn"
-				>
-					Clear Favourite Movies
-				</button>
-			</div>
+			<section class="favourites-div">
+				<div class="favourites-title"><h2>Favourite Movies</h2></div>
+				<div id="movie-favourites" class="favourites-container"></div>
+				<div class="clear-btn-div">
+					<button
+						type="button"
+						id="clear-saved-movies-btn"
+						class="clear-storage-btn"
+					>
+						Clear Favourite Movies
+					</button>
+				</div>
+			</section>
 
-			<div class="favourites-title"><h2>Favourite Actors</h2></div>
-			<div id="actor-favourites" class="favourites-container"></div>
-			<div class="clear-btn-div">
-				<button
-					type="button"
-					id="clear-saved-actors-btn"
-					class="clear-storage-btn"
-				>
-					Clear Favourite Actors
-				</button>
+			<div class="favourites-div">
+				<div class="favourites-title"><h2>Favourite Actors</h2></div>
+				<div id="actor-favourites" class="favourites-container"></div>
+				<div class="clear-btn-div">
+					<button
+						type="button"
+						id="clear-saved-actors-btn"
+						class="clear-storage-btn"
+					>
+						Clear Favourite Actors
+					</button>
+				</div>
 			</div>
 		</section>
 
 		<!-- Team Section -->
 		<section id="team-section">
-			<div class="favourites-title"><h2>The Team</h2></div>
+			<div class="favourites-title text-center"><h2>The Team</h2></div>
 
-			<section class="text-center footer_media">
+			<section class="text-center">
 				<div class="container p-4">
-					<div class="row">
+					<div class="row team-row">
 						<div class="col-lg-2 col-md-12 mb-4 mb-md-0">
 							<div
 								class="bg-image hover-overlay ripple shadow-1-strong rounded"
@@ -346,9 +350,7 @@
 								<a href="#!"> </a>
 							</div>
 						</div>
-					</div>
 
-					<div class="row">
 						<div class="col-lg-2 col-md-12 mb-4 mb-md-0">
 							<div
 								class="bg-image hover-overlay ripple shadow-1-strong rounded"
@@ -359,9 +361,7 @@
 								<a href="#!"> </a>
 							</div>
 						</div>
-					</div>
 
-					<div class="row">
 						<div class="col-lg-2 col-md-12 mb-4 mb-md-0">
 							<div
 								class="bg-image hover-overlay ripple shadow-1-strong rounded"
@@ -372,9 +372,7 @@
 								<a href="#!"> </a>
 							</div>
 						</div>
-					</div>
 
-					<div class="row">
 						<div class="col-lg-2 col-md-12 mb-4 mb-md-0">
 							<div
 								class="bg-image hover-overlay ripple shadow-1-strong rounded"
@@ -390,10 +388,8 @@
 			</section>
 		</section>
 
-		<footer>
-			<div class="text-center p-3">
-				<strong> Moviepedia <a class="text-white">© 2023</a> </strong>
-			</div>
+		<footer class="footer-class">
+			<strong> Moviepedia <a class="text-white">© 2023</a> </strong>
 		</footer>
 
 		<!-- SCRIPTS -->

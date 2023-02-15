@@ -32,7 +32,9 @@ body {
 
 	display: flex;
 	flex-direction: column;
-	gap: 3rem;
+	align-items: center;
+	min-width: 100%;
+	gap: 8rem;
 }
 
 h1,
@@ -77,13 +79,16 @@ footer {
 	background: url("../images/transparency.png");
 	background-size: cover;
 	padding: 1rem 3rem;
-	opacity: 0.8;
 }
 
 .nav-brand-name,
 .nav-link h3 {
 	color: var(--light) !important;
 	text-shadow: var(--shadow);
+}
+
+.nav-favourites-item:hover {
+	cursor: pointer;
 }
 
 .navbar-nav {
@@ -104,7 +109,6 @@ footer {
 	border: solid 3px var(--light);
 	border-radius: 15px;
 	background-color: wheat;
-	opacity: 70%;
 }
 
 .nav-brand-name {
@@ -141,6 +145,7 @@ footer {
 /* Jumbotron */
 .jumbotron {
 	min-height: 100vh;
+	min-width: 100%;
 	margin-bottom: 0;
 	padding: calc(10vh + 4rem) 4rem 4rem 4rem;
 
@@ -161,7 +166,6 @@ footer {
 	display: flex;
 	align-items: center;
 	text-align: center;
-	/* visibility: hidden; */
 }
 
 .hero-content {
@@ -178,22 +182,6 @@ footer {
 	font-family: "homenaje";
 	text-shadow: var(--shadow);
 }
-
-/* .hero-btn {
-	margin: 0.3em 0.3em;
-	font-size: 1.5em;
-	text-shadow: var(--shadow);
-	background: var(--dark);
-	border: 1px solid var(--light);
-	border-radius: 15px;
-}
-.hero-btn:hover,
-.hero-btn:focus {
-	box-shadow: 0 0 0.5em var(--light);
-	background: url(../images/transparency.png);
-	border: 1px solid var(--light);
-	color: var(--light);
-} */
 
 /* Input Field */
 .search-div {
@@ -357,8 +345,22 @@ footer {
 #favourites {
 	display: flex;
 	flex-direction: column;
-	gap: 3rem;
+	gap: 8rem;
 	align-items: center;
+	min-width: 100%;
+}
+
+.favourites-div,
+#team-section {
+	min-width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 3rem;
+	background: var(--dark-text);
+	/* background: url("../images/transparency.png"); */
+	padding: 3rem;
 }
 
 .favourites-container {
@@ -383,23 +385,16 @@ footer {
 }
 
 /* Team section */
-/* .footer_media {
-	min-width: 100%;
-	min-height: 10vh;
-	background-color: var(--dark-red);
-	background-size: cover;
-	padding: 1rem 3rem;
-}
-.footer_media h3 {
+.team-section h3 {
 	margin-top: 30px;
 	margin-bottom: 20px;
 }
 
-.row {
+.team-row {
 	align-items: center;
 	justify-content: center;
 }
-.row img {
+.team-row img {
 	border: 2px solid #ddd;
 	border-radius: 5px;
 	padding: 5px;
@@ -408,9 +403,17 @@ footer {
 	gap: 20px;
 	cursor: pointer;
 }
-.footer_media img:hover {
+.team-row img:hover {
 	transform: translateY(-10px);
-} */
+}
+
+/* Footer */
+.footer-class {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2.5rem;
+}
 
 /* ---media queries--- */
 /* nav-bar toggle alignment */
