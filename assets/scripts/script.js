@@ -1,35 +1,27 @@
 const omdbKey = "e2bf0e18";
 
 // FUNCTION FOR CELEBNINJA API
-function celebNinjaClosure(celebName) {
-	celebName = "beyonce"; // PLACEHOLDER
+function celebNinja(celebName) {
+	$.ajax({
+		method: "GET",
+		url: "https://api.celebrityninjas.com/v1/search?name=" + celebName,
+		headers: { "X-Api-Key": "+qZ8SEACFRjRVK2XZ9RpgQ==urpaH1jT1cOiYaJ6" },
+		contentType: "application/json"
+	}).then((result) => {
 
-	function celebNinjaInner() {
-		$.ajax({
-			method: "GET",
-			url: "https://api.celebrityninjas.com/v1/search?name=" + celebName,
-			headers: { "X-Api-Key": "+qZ8SEACFRjRVK2XZ9RpgQ==urpaH1jT1cOiYaJ6" },
-			contentType: "application/json"
-		}).then((result) => {
+		// let nameActor = result[0].name;
+		// $(".name").text(`${nameActor}`);
 
-			// let nameActor = result[0].name;
-			// $(".name").text(`${nameActor}`);
-
-			//$(".name").text(result[0].name);
-			console.log(result[0].name);
-			$(".birthday").text("Birthday:" + result[0].birthday);
-			console.log(result[0].birthday);
-			$(".height").text("Height:" + result[0].height);
-			 console.log(result[0].net_worth);
-			$(".net-worth").text("Net Worth:" + result[0].net_worth)
-			console.log(result[0].height);
-		});
-	}
-	return celebNinjaInner;
+		//$(".name").text(result[0].name);
+		console.log(result[0].name);
+		$(".birthday").text("Birthday:" + result[0].birthday);
+		console.log(result[0].birthday);
+		$(".height").text("Height:" + result[0].height);
+			console.log(result[0].net_worth);
+		$(".net-worth").text("Net Worth:" + result[0].net_worth)
+		console.log(result[0].height);
+	});
 }
-let celebNinja = celebNinjaClosure();
-
-celebNinja();
 
 // function to pull data from omdb API for searching
 function searchMovieTitles(searchString) {
@@ -93,8 +85,6 @@ function actorSearch(actor) {
 		//  };
 	});
 }
-
-console.log(actorSearch("tom_hanks"));
 
 // function to pull data from omdb API for data of selected movie
 function getMovieDetails(movieTitle, movieYear) {
@@ -198,6 +188,13 @@ function saveMovie(e) {
 	console.log(e.parent());
 }
 
+// function to populate actor modal on click
+function populateActorModal(){
+	const actorName = $(this).attr("data-actor-name")
+	actorSearch(actorName);
+	celebNinja(actorName);
+}
+
 // Document Ready Event Handlers
 $(function () {
 	// Keyup event listener for movie search input field
@@ -205,6 +202,9 @@ $(function () {
 
 	// Click event listener for movie search menu dropdown item selection
 	$("#search-menu").on("click", goToSearchResult);
+
+	// click event listener for actor modal currently on second page
+	$("#actor-modal").on("click", populateActorModal);
 
 	// Bug: dropdown menu disappears when selecting search menu items
 	// $(".movie-input").on("click", returnSearchResults);
