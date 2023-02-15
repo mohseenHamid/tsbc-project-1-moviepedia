@@ -239,8 +239,9 @@ function renderFavMovies() {
 	}
 
 	savedMoviesArray.forEach((movie) => {
-		const titleHead = $("<h3>");
+		const titleHead = $("<figcaption>");
 		titleHead.text(`${movie.title} (${movie.year})`);
+		titleHead.addClass("fav-movie-title");
 
 		const imgTag = $("<img>");
 		imgTag.attr("src", movie.img);
@@ -249,12 +250,13 @@ function renderFavMovies() {
 		const imgDiv = $("<div>");
 		imgDiv.append(imgTag);
 
-		const movieDiv = $("<a>");
+		const movieDiv = $("<figure>");
 		movieDiv.addClass("favourites-tile");
 		movieDiv.attr("data-movie-title", movie.title);
 		movieDiv.attr("data-movie-year", movie.year);
 		movieDiv.attr("data-movie-img", movie.img);
 		movieDiv.append(titleHead);
+		// movieDiv.prepend(imgTag);
 		movieDiv.prepend(imgDiv);
 		movieDiv.on("click", ".favImg", function () {
 			getMovieDetails(movie.title, movie.year);
@@ -320,7 +322,7 @@ function renderFavActors() {
 	}
 
 	savedActorsArray.forEach((actor) => {
-		const titleHead = $("<h3>");
+		const titleHead = $("<figcaption>");
 		titleHead.text(`${actor.name}`);
 
 		const imgTag = $("<img>");
@@ -332,7 +334,7 @@ function renderFavActors() {
 		const imgDiv = $("<div>");
 		imgDiv.append(imgTag);
 
-		const actorDiv = $("<a>");
+		const actorDiv = $("<figure>");
 		actorDiv.addClass("favourites-tile");
 		actorDiv.attr("data-actor-name", actor.name);
 		actorDiv.attr("data-actor-img", actor.img);

@@ -50,7 +50,7 @@ The following link takes you to a figma wireframe for the application:
 
 The following is a demo of the application functionality:
 
-![Animation going through each step. TBC](./assets/other/webpage-demo.gif)
+![Animation going through each step. Show the navbar. Scroll through the page. Search a film by typing and select from the dropdown menu. Demo the movie modal and save to favourites. Select an actor card and navigate the subsequent actor modal. Save actor modal to favourites. Close the modals and navigate down to the favourites section. Display a saved movie and a saved actor. Clear both favourites fields.](./assets/images/demo-gif.gif)
 
 ### Deployment Link
 
