@@ -254,6 +254,7 @@ function renderFavMovies() {
 		imgDiv.append(imgTag);
 
 		const movieDiv = $("<a>");
+		movieDiv.addClass("favourites-tile");
 		movieDiv.attr("data-movie-title", movie.title);
 		movieDiv.attr("data-movie-year", movie.year);
 		movieDiv.attr("data-movie-img", movie.img);
@@ -314,7 +315,6 @@ function saveMovie(e) {
 	renderFavMovies();
 }
 
-// --- TO BE COMPLETED ---
 function renderFavActors() {
 	// Empty array first to avoid duplication in the div
 	$("#actor-favourites").empty();
@@ -341,6 +341,7 @@ function renderFavActors() {
 		imgDiv.append(imgTag);
 
 		const actorDiv = $("<a>");
+		actorDiv.addClass("favourites-tile");
 		actorDiv.attr("data-actor-name", actor.name);
 		actorDiv.attr("data-actor-img", actor.img);
 		actorDiv.append(titleHead);
