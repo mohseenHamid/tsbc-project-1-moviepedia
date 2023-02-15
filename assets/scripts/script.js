@@ -226,7 +226,12 @@ function actorModalOpen(event) {
 
 	// Reopens the movie modal if actor modal is closed
 	$(".actor-search-modal").on("hide.bs.modal", function () {
-		$("#movie-search-modal").modal("show");
+		let testText = $(".c2-r1-c1").text();
+		console.log(testText);
+
+		if (testText !== "placeholder") {
+			$("#movie-search-modal").modal("show");
+		}
 	});
 }
 
