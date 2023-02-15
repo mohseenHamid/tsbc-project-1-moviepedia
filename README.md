@@ -2,7 +2,7 @@
 
 ## Description
 
-Build a front-end web service to allow users to search up information about a film including key actors and creators. This app will run in the browser, and will feature dynamically updated HTML and CSS powered by JavaScript code.
+Build a front-end web service to allow users to search up information about a film including key actors. This app will run in the browser, and will feature dynamically updated HTML and CSS powered by JavaScript code.
 
 ## User Story
 
