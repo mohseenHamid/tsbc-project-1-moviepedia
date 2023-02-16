@@ -128,7 +128,7 @@
 			aria-hidden="true"
 		>
 			<div
-				class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable"
+				class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg"
 				role="document"
 			>
 				<div class="modal-content">
@@ -136,14 +136,6 @@
 						<h3 class="modal-title" id="movie-search-modal">
 							Here's your movie!
 						</h3>
-						<button
-							type="button"
-							class="close"
-							data-dismiss="modal"
-							aria-label="Close"
-						>
-							<span aria-hidden="true">&times;</span>
-						</button>
 					</div>
 
 					<div class="modal-body container modal-body-container">
@@ -188,7 +180,7 @@
 						</div>
 
 						<div class="row r2">
-							<div class="col-sm img-col">
+							<div class="col-sm img-col movie-modal-actor-row">
 								<a class="card card-1 actor-card" style="width: 22rem" href="">
 									<img
 										class="card-img-top card-img-1"
@@ -241,6 +233,8 @@
 			</div>
 		</div>
 
+		<div class="s-break"></div>
+
 		<!-- Actor Modal (Popup): Displayed upon actor card selection in movie modal -->
 		<div
 			class="modal fade actor-search-modal"
@@ -249,10 +243,7 @@
 			role="dialog"
 			aria-labelledby="exampleModalCenterTitle"
 		>
-			<div
-				class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable"
-				role="document"
-			>
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 				<div class="modal-content actor-modal-content">
 					<div class="modal-body actor-modal-body">
 						<div class="container actor-modal-container">
@@ -306,39 +297,49 @@
 		<section id="favourites">
 			<section class="favourites-div">
 				<div class="favourites-title"><h2>Favourite Movies</h2></div>
-				<div id="movie-favourites" class="favourites-container"></div>
-				<div class="clear-btn-div">
-					<button
-						type="button"
-						id="clear-saved-movies-btn"
-						class="clear-storage-btn"
-					>
-						Clear Favourite Movies
-					</button>
-				</div>
+
+				<section class="favourites-reel">
+					<div id="movie-favourites" class="favourites-container"></div>
+					<div class="clear-btn-div">
+						<button
+							type="button"
+							id="clear-saved-movies-btn"
+							class="clear-storage-btn btn-secondary btn"
+						>
+							Clear Favourite Movies
+						</button>
+					</div>
+				</section>
 			</section>
+
+			<div class="s-break"></div>
 
 			<div class="favourites-div">
 				<div class="favourites-title"><h2>Favourite Actors</h2></div>
-				<div id="actor-favourites" class="favourites-container"></div>
-				<div class="clear-btn-div">
-					<button
-						type="button"
-						id="clear-saved-actors-btn"
-						class="clear-storage-btn"
-					>
-						Clear Favourite Actors
-					</button>
-				</div>
+
+				<section class="favourites-reel">
+					<div id="actor-favourites" class="favourites-container"></div>
+					<div class="clear-btn-div">
+						<button
+							type="button"
+							id="clear-saved-actors-btn"
+							class="clear-storage-btn btn-secondary btn"
+						>
+							Clear Favourite Actors
+						</button>
+					</div>
+				</section>
 			</div>
 		</section>
 
+		<div class="s-break"></div>
+
 		<!-- Team Section -->
 		<section id="team-section">
-			<div class="favourites-title text-center"><h2>The Team</h2></div>
+			<div class="text-center"><h2>The Team</h2></div>
 
-			<section class="text-center">
-				<div class="container p-4">
+			<section class="text-center team-reel">
+				<div class="container p-4 team-div">
 					<div class="row team-row">
 						<div class="col-lg-2 col-md-12 mb-4 mb-md-0">
 							<div

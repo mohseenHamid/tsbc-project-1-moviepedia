@@ -80,12 +80,6 @@ footer {
 	padding: 1rem 3rem;
 }
 
-footer,
-#team-section,
-#favourites {
-	margin-top: 8rem;
-}
-
 .nav-brand-name,
 .nav-link h3 {
 	color: var(--light) !important;
@@ -154,16 +148,6 @@ footer,
 	margin-bottom: 0;
 	padding: calc(10vh + 4rem) 4rem 4rem 4rem;
 
-	/* background: linear-gradient(
-			360deg,
-			black 0.1%,
-			rgba(26, 26, 26, 0.886317) 10.58%,
-			rgba(26, 26, 26, 0.886317) 10.58%,
-			rgba(26, 26, 26, 0.886317) 10.58%,
-			rgba(26, 26, 26, 0.65) 25.45%,
-			rgba(26, 26, 26, 0.3) 100%
-		),
-		url(../images/hero.png); */
 	background: url(../images/hero.png);
 	background-size: cover;
 	background-position: center;
@@ -186,6 +170,12 @@ footer,
 .hero-text {
 	font-family: "homenaje";
 	text-shadow: var(--shadow);
+}
+
+.s-break {
+	height: 1rem;
+	width: 100%;
+	background: url("../images/transparency.png");
 }
 
 /* Input Field */
@@ -227,10 +217,32 @@ footer,
 }
 
 /* Movie modal*/
+.modal-header,
+.modal-footer {
+	padding: 3rem 0 0 0;
+}
+
+.modal-footer {
+	display: flex;
+	justify-content: flex-end;
+	gap: 1rem;
+}
+
+.btn-danger,
+.btn-secondary {
+	margin: 0;
+	font-size: 1.5rem;
+	display: flex;
+	justify-content: center;
+	padding: 0.5rem;
+	/* background: url("../images/transparency.png"); */
+	color: var(--light);
+}
+
 .modal-content {
 	background: var(--dark-red);
 	color: var(--light);
-	padding: 3rem;
+	padding: 4rem;
 	gap: 3rem;
 }
 
@@ -245,8 +257,12 @@ footer,
 .test-row-2 {
 	margin: 0;
 	display: flex;
-	justify-content: center;
+	/* justify-content: center; */
 	align-items: center;
+}
+
+.test-row-2 {
+	width: 100%;
 }
 
 .c2-r1 {
@@ -259,7 +275,9 @@ footer,
 }
 
 #modal-movie-poster {
-	max-width: 100%;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 	padding: 0;
 }
 
@@ -300,8 +318,8 @@ footer,
 .img-col {
 	display: flex;
 	margin: 0;
-	padding: 0.3rem;
-	justify-content: space-between;
+	padding: 0;
+	/* justify-content: space-between; */
 }
 
 .c2-r2-c1 {
@@ -317,6 +335,31 @@ footer,
 .card:hover {
 	text-decoration: none;
 	box-shadow: 0 0 0.5em var(--light);
+}
+
+.movie-modal-actor-row {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.movie-modal-actor-row .card img {
+	border-radius: 15px;
+	min-width: 100%;
+	height: 85%;
+	object-fit: cover;
+	background: url("../images/transparency.png");
+}
+
+.movie-modal-actor-row .card {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	max-width: 300px;
+	text-align: center;
+	border-radius: 15px;
 }
 
 /* Actor modal */
@@ -350,20 +393,24 @@ footer,
 #favourites {
 	display: flex;
 	flex-direction: column;
-	gap: 8rem;
 	align-items: center;
 	min-width: 100%;
+	background: url(../images/dark-board.jpg);
 }
 
-.favourites-div,
-#team-section {
+.favourites-title,
+#team-section h2 {
+	padding: 3rem;
+	text-align: center;
+}
+
+.favourites-reel {
 	min-width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	gap: 3rem;
-	background: var(--dark-text);
 	padding: 3rem;
 }
 
@@ -372,6 +419,7 @@ footer,
 	flex-wrap: wrap;
 	gap: 3rem;
 	justify-content: center;
+	min-height: 50vh;
 }
 
 .favImg {
@@ -400,6 +448,9 @@ footer,
 }
 
 /* Team section */
+#team-section {
+	padding: 3rem;
+}
 .team-section h3 {
 	margin-top: 30px;
 	margin-bottom: 20px;
@@ -432,6 +483,18 @@ footer,
 
 /* ---media queries--- */
 /* nav-bar toggle alignment */
+@media (max-width: 991px) {
+	.movie-modal-actor-row {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		margin: 0;
+		padding: 0;
+		align-items: center;
+		gap: 1rem;
+	}
+}
+
 @media (max-width: 432px) {
 	.customNav {
 		display: flex;
