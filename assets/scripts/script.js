@@ -83,6 +83,7 @@ function actorSearch(actor, cardNum) {
 
 		// Assign data attribute of actor name to the card to use later for actor modal
 		$(card).attr("data-actor-name", actorResult.actorName);
+		$(card).on("click", actorModalOpen);
 	});
 }
 
@@ -199,8 +200,6 @@ function actorModalSearch(actor) {
 function actorModalOpen(event) {
 	event.preventDefault();
 
-	console.log("ACTOR CARD CLICKED");
-
 	// Retrieve the actor name using the data attribute assigned to the card earlier
 	const actorName = $(this).attr("data-actor-name");
 
@@ -314,8 +313,6 @@ function saveMovie(e) {
 }
 
 function renderFavActors() {
-	console.log("ACTOR RENDERING");
-
 	// Empty array first to avoid duplication in the div
 	$("#actor-favourites").empty();
 
@@ -325,7 +322,6 @@ function renderFavActors() {
 	// Checking if localStorage is populated and retrieve data if so
 	if (localStorage.getItem("savedActors") !== null) {
 		savedActorsArray = JSON.parse(localStorage.getItem("savedActors"));
-		console.log("ACTOR RETRIEVAL");
 	}
 
 	savedActorsArray.forEach((actor) => {
@@ -349,13 +345,8 @@ function renderFavActors() {
 		actorDiv.append(titleHead);
 		actorDiv.prepend(imgDiv);
 		actorDiv.on("click", ".actor-card", actorModalOpen);
-
 		$("#actor-favourites").append(actorDiv);
-
-		console.log("ACTOR DIV RENDERING");
 	});
-
-	console.log("ALL ACTOR RENDERING DONE");
 }
 
 // Callback ftn for save actor btn in actor modal
@@ -398,7 +389,6 @@ function saveActor(e) {
 	}
 
 	// --- Step 2: Render favourite actors section with localStorage data ---
-	console.log("ACTOR SAVED");
 	renderFavActors();
 }
 
@@ -407,7 +397,6 @@ function closeActorModal(e) {
 	// Change button text back to default
 	$("#actor-fav-save-btn").text("Save to Favourites");
 
-	console.log("ACTOR MODAL CLOSED");
 	// Extracts text from one of the movie modal elements
 	let testText = $(".c2-r1-c1").text();
 
@@ -430,7 +419,6 @@ function closeActorModal(e) {
 // Document Ready Event Handlers
 $(function () {
 	renderFavMovies();
-
 	renderFavActors();
 
 	// Keyup event listener for movie search input field
@@ -440,7 +428,7 @@ $(function () {
 	$("#search-menu").on("click", goToSearchResult);
 
 	// Click event listener for actor modal (selection via movie modal actor cards)
-	$(".actor-card").on("click", actorModalOpen);
+	// $(".actor-card").on("click", actorModalOpen);
 
 	// IS THIS EVENT DELEGATION CORRECT? I WANT THE TARGET TO BE THE MODAL
 	// Click event listener for save movie btn in movie modal
