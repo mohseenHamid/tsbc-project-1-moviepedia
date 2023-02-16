@@ -61,29 +61,38 @@ function returnSearchResults(event) {
 
 // Function to populate actors' cards on movie modal (click on actor card)
 function actorSearch(actor, cardNum) {
+	// Extracting card label
+	let card = `.card-${cardNum}`;
+	let cardTitle = `.card-title-${cardNum}`;
+	let cardImg = `.card-img-${cardNum}`;
+
 	$.ajax({
 		method: "GET",
 		url: "https://en.wikipedia.org/api/rest_v1/page/summary/" + actor,
-		contentType: "application/json"
-	}).then(function (result) {
-		actorResult = {
-			actorName: result.title,
-			thumbnail: result.thumbnail.source,
-			bio: result.extract
-		};
+		contentType: "application/json",
+		// Only populate movie modal actor cards if API response is a success
+		success: function (result) {
+			// Display the actor card on successful API response
+			$(card).css("display", "block");
 
-		// Extracting card label
-		let card = `.card-${cardNum}`;
-		let cardTitle = `.card-title-${cardNum}`;
-		let cardImg = `.card-img-${cardNum}`;
+			actorResult = {
+				actorName: result.title,
+				thumbnail: result.thumbnail.source,
+				bio: result.extract
+			};
 
-		// Assign card properties
-		$(cardImg).attr("src", actorResult.thumbnail);
-		$(cardTitle).text(actorResult.actorName);
+			// Assign card properties
+			$(cardImg).attr("src", actorResult.thumbnail);
+			$(cardTitle).text(actorResult.actorName);
 
-		// Assign data attribute of actor name to the card to use later for actor modal
-		$(card).attr("data-actor-name", actorResult.actorName);
-		$(card).on("click", actorModalOpen);
+			// Assign data attribute of actor name to the card to use later for actor modal
+			$(card).attr("data-actor-name", actorResult.actorName);
+			$(card).on("click", actorModalOpen);
+		},
+		// Hide the actor card if API response fails
+		error: function () {
+			$(card).css("display", "none");
+		}
 	});
 }
 
