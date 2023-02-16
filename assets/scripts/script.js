@@ -267,6 +267,14 @@ renderFavMovies();
 function saveMovie(e) {
 	e.preventDefault();
 
+	// Change button text to update user
+	$("#movie-fav-save-btn").text("Saved!");
+
+	setTimeout(() => {
+		// Change button text back to default
+		$("#movie-fav-save-btn").text("Save to Favourites");
+	}, 2000);
+
 	// --- Step 1: Save favourite movie data to localStorage ---
 	// Extract movie data from the movie-search-modal attributes for storage
 	const movieTitle = $("#movie-search-modal").attr("data-movie-title");
@@ -347,6 +355,9 @@ renderFavActors();
 function saveActor(e) {
 	e.preventDefault();
 
+	// Change button text to update user
+	$("#actor-fav-save-btn").text("Saved!");
+
 	// --- Step 1: Save favourite actor data to localStorage ---
 	// Extract actor data from the actor-modal attributes for storage
 	const actorName = $("#actor-modal").attr("data-actor-name");
@@ -384,6 +395,9 @@ function saveActor(e) {
 
 // Event handler for closing the actor modal
 function closeActorModal(e) {
+	// Change button text back to default
+	$("#actor-fav-save-btn").text("Save to Favourites");
+
 	// Extracts text from one of the movie modal elements
 	let testText = $(".c2-r1-c1").text();
 
