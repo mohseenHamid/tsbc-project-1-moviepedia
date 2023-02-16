@@ -199,6 +199,8 @@ function actorModalSearch(actor) {
 function actorModalOpen(event) {
 	event.preventDefault();
 
+	console.log("ACTOR CARD CLICKED");
+
 	// Retrieve the actor name using the data attribute assigned to the card earlier
 	const actorName = $(this).attr("data-actor-name");
 
@@ -260,7 +262,6 @@ function renderFavMovies() {
 		$("#movie-favourites").append(movieDiv);
 	});
 }
-renderFavMovies();
 
 // Callback ftn for save movie btn in movie modal
 // Saves movie to favourites carousel
@@ -313,6 +314,8 @@ function saveMovie(e) {
 }
 
 function renderFavActors() {
+	console.log("ACTOR RENDERING");
+
 	// Empty array first to avoid duplication in the div
 	$("#actor-favourites").empty();
 
@@ -322,6 +325,7 @@ function renderFavActors() {
 	// Checking if localStorage is populated and retrieve data if so
 	if (localStorage.getItem("savedActors") !== null) {
 		savedActorsArray = JSON.parse(localStorage.getItem("savedActors"));
+		console.log("ACTOR RETRIEVAL");
 	}
 
 	savedActorsArray.forEach((actor) => {
@@ -344,11 +348,15 @@ function renderFavActors() {
 		actorDiv.attr("data-actor-img", actor.img);
 		actorDiv.append(titleHead);
 		actorDiv.prepend(imgDiv);
+		actorDiv.on("click", ".actor-card", actorModalOpen);
 
 		$("#actor-favourites").append(actorDiv);
+
+		console.log("ACTOR DIV RENDERING");
 	});
+
+	console.log("ALL ACTOR RENDERING DONE");
 }
-renderFavActors();
 
 // Callback ftn for save actor btn in actor modal
 // Saves actor to favourites carousel
@@ -390,6 +398,7 @@ function saveActor(e) {
 	}
 
 	// --- Step 2: Render favourite actors section with localStorage data ---
+	console.log("ACTOR SAVED");
 	renderFavActors();
 }
 
@@ -398,6 +407,7 @@ function closeActorModal(e) {
 	// Change button text back to default
 	$("#actor-fav-save-btn").text("Save to Favourites");
 
+	console.log("ACTOR MODAL CLOSED");
 	// Extracts text from one of the movie modal elements
 	let testText = $(".c2-r1-c1").text();
 
@@ -419,6 +429,10 @@ function closeActorModal(e) {
 
 // Document Ready Event Handlers
 $(function () {
+	renderFavMovies();
+
+	renderFavActors();
+
 	// Keyup event listener for movie search input field
 	$(".movie-input").on("keyup", returnSearchResults);
 
@@ -436,7 +450,7 @@ $(function () {
 	$("#actor-modal").on("click", "#actor-fav-save-btn", saveActor);
 
 	// Event listener for closing the actor modal
-	$(".actor-search-modal").on("hide.bs.modal", closeActorModal);
+	$("#actor-modal").on("hide.bs.modal", closeActorModal);
 
 	// --- CLEAR LOCALSTORAGE ---
 	// Clear favourite movies
