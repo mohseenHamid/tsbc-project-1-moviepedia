@@ -364,7 +364,6 @@ footer,
 	align-items: center;
 	gap: 3rem;
 	background: var(--dark-text);
-	/* background: url("../images/transparency.png"); */
 	padding: 3rem;
 }
 
@@ -377,7 +376,10 @@ footer,
 
 .favImg {
 	border-radius: 15px;
-	max-width: 100%;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	background: url("../images/transparency.png");
 }
 
 .favourites-tile {
@@ -385,11 +387,14 @@ footer,
 	flex-direction: column;
 	gap: 1.5rem;
 	text-align: center;
-	/* background: url("../images/transparency.png"); */
 	padding-bottom: 1rem;
 	border-radius: 15px;
 	flex-wrap: wrap;
-	max-width: 300px;
+}
+
+.favourites-tile div {
+	width: 300px;
+	height: 450px;
 }
 
 /* Team section */
