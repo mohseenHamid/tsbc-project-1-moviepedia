@@ -214,10 +214,10 @@ function actorModalOpen(event) {
 	}, 1200);
 
 	// Change cursor to progress to indicate the time delay
-	$(".card").css("cursor", "progress");
+	$(".actor-card").css("cursor", "progress");
 
 	setTimeout(() => {
-		$(".card").css("cursor", "pointer");
+		$(".actor-card").css("cursor", "pointer");
 	}, 1200);
 }
 
@@ -322,7 +322,8 @@ function renderFavActors() {
 
 		const imgTag = $("<img>");
 		imgTag.attr("src", actor.img);
-		imgTag.addClass("favImg");
+		// Assign actor-card class to enable click event handler
+		imgTag.addClass("favImg actor-card");
 		imgTag.attr("data-actor-name", actor.name);
 
 		imgTag.css("cursor", "pointer");
@@ -335,7 +336,6 @@ function renderFavActors() {
 		actorDiv.attr("data-actor-img", actor.img);
 		actorDiv.append(titleHead);
 		actorDiv.prepend(imgDiv);
-		actorDiv.on("click", ".favImg", actorModalOpen);
 
 		$("#actor-favourites").append(actorDiv);
 	});
