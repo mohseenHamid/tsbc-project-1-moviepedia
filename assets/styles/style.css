@@ -385,11 +385,13 @@ footer,
 .favourites-tile {
 	display: flex;
 	flex-direction: column;
-	gap: 1.5rem;
+	align-items: center;
+	flex-wrap: wrap;
+	max-width: 300px;
 	text-align: center;
 	padding-bottom: 1rem;
 	border-radius: 15px;
-	flex-wrap: wrap;
+	gap: 1.5rem;
 }
 
 .favourites-tile div {
