@@ -145,11 +145,6 @@ function getMovieDetails(movieTitle, movieYear) {
 		// Display movie modal upon completion
 		$("#movie-search-modal").modal("show");
 	}, 800);
-
-	// // Reopens the movie modal if actor modal is closed
-	// $(".actor-search-modal").on("hide.bs.modal", function () {
-	// 	$("#movie-search-modal").modal("show");
-	// });
 }
 
 // Callback ftn for movie selection via search menu (calls the OMDB API ftn "getMovieDetails")
